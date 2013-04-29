@@ -1,0 +1,30 @@
+package org.codingmatters.random.values.base;
+
+import org.codingmatters.random.values.base.simple.RandomDouble;
+import org.codingmatters.random.values.base.simple.RandomFloat;
+
+import java.util.Random;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: nelt
+ * Date: 29/04/13
+ * Time: 21:33
+ * To change this template use File | Settings | File Templates.
+ */
+public class RandomValues {
+    
+    static private final Random RANDOM = new Random() ;
+    
+    static public Random random() {
+        return RANDOM ;
+    }
+    
+    static public RandomFloat float_() {
+        return new RandomFloat() ;
+    }
+
+    public static RandomDouble double_() {
+        return new RandomDouble() ;
+    }
+}
