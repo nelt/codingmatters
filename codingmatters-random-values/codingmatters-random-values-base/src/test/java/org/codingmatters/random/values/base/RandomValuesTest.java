@@ -31,4 +31,9 @@ public class RandomValuesTest {
     public void testLong() throws Exception {
         Assert.assertNotNull(RandomValues.long_().value() ) ;
     }
+
+    @Test
+    public void testString() throws Exception {
+        Assert.assertNotNull(RandomValues.string().value() ) ;
+    }
 }

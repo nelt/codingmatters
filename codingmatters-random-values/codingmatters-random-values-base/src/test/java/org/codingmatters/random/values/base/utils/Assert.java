@@ -1,5 +1,7 @@
 package org.codingmatters.random.values.base.utils;
 
+import org.codingmatters.random.values.base.string.characters.CharacterRange;
+
 /**
  * Created with IntelliJ IDEA.
  * User: nelt
@@ -47,5 +49,18 @@ public class Assert extends org.junit.Assert {
         assertInRange(
                 String.format( "value not in range : %s : [%s ; %s]" , value , lower , upper) ,
                 lower , upper , value );
+    }
+
+    static public void assertIsCharacterRange(String expectedChars , CharacterRange actual) {
+        assertEquals(expectedChars.length(), actual.size()) ;
+        for( int i = 0 ; i < expectedChars.length() ; i++ ) {
+            actual.contains( expectedChars.charAt( i )) ;
+        }
+    }
+
+    public static void assertAllCharactersExpected(String expected, String actual) {
+        for( int i = 0 ; i < actual.length() ; i++ ) {
+            assertTrue(expected.indexOf(actual.charAt(i)) != -1);
+        }
     }
 }

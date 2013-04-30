@@ -4,6 +4,7 @@ import org.codingmatters.random.values.base.simple.RandomDouble;
 import org.codingmatters.random.values.base.simple.RandomFloat;
 import org.codingmatters.random.values.base.simple.RandomInteger;
 import org.codingmatters.random.values.base.simple.RandomLong;
+import org.codingmatters.random.values.base.string.RandomString;
 
 import java.util.Random;
 
@@ -36,5 +37,9 @@ public class RandomValues {
 
     public static RandomLong long_() {
         return new RandomLong() ;
+    }
+
+    public static RandomString string() {
+        return new RandomString() ;
     }
 }
