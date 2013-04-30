@@ -17,18 +17,17 @@ public class RandomDouble implements RandomValueBuilder <Double>{
 
     @Override
     public Double value() {
+        assert this.min <= this.max ;
         double length = this.max - this.min ;
         return ( length * RandomValues.random().nextDouble() ) + this.min ;
     }
 
     public RandomDouble min( Double min ) {
-        assert min <= this.max ;
         this.min = min;
         return this ;
     }
 
     public RandomDouble max( Double max ) {
-        assert max >= this.min ;
         this.max = max;
         return this;
     }

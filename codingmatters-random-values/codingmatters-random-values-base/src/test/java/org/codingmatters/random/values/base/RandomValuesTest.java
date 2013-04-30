@@ -21,4 +21,14 @@ public class RandomValuesTest {
     public void testDouble() throws Exception {
         Assert.assertNotNull(RandomValues.double_().value() ) ;
     }
+
+    @Test
+    public void testInteger() throws Exception {
+        Assert.assertNotNull(RandomValues.integer().value() ) ;
+    }
+
+    @Test
+    public void testLong() throws Exception {
+        Assert.assertNotNull(RandomValues.long_().value() ) ;
+    }
 }

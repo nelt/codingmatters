@@ -44,6 +44,6 @@ public class RandomFloatTest {
 
     @Test(expected = AssertionError.class)
     public void testMalformedRange() throws Exception {
-        new RandomFloat().min( 2.0f ).max( 1.0f ) ;
+        new RandomFloat().min( 2.0f ).max( 1.0f ).value() ;
     }
 }

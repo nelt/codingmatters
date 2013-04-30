@@ -44,7 +44,7 @@ public class RandomDoubleTest {
 
     @Test(expected = AssertionError.class)
     public void testMalformedRange() throws Exception {
-        new RandomDouble().min( 2.0d ).max( 1.0d ) ;
+        new RandomDouble().min( 2.0d ).max( 1.0d ).value() ;
     }
 
 }

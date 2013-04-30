@@ -28,4 +28,24 @@ public class Assert extends org.junit.Assert {
                 String.format( "value not in range : %s : [%s ; %s]" , value , lower , upper) ,
                 lower , upper , value );
     }
+
+    public static void assertInRange( String message , Integer lower, Integer upper, Integer value) {
+        assertTrue( message , lower <= value && value <= upper );
+    }
+
+    public static void assertInRange(Integer lower, Integer upper, Integer value) {
+        assertInRange(
+                String.format( "value not in range : %s : [%s ; %s]" , value , lower , upper) ,
+                lower , upper , value );
+    }
+
+    public static void assertInRange( String message , Long lower, Long upper, Long value) {
+        assertTrue( message , lower <= value && value <= upper );
+    }
+
+    public static void assertInRange(Long lower, Long upper, Long value) {
+        assertInRange(
+                String.format( "value not in range : %s : [%s ; %s]" , value , lower , upper) ,
+                lower , upper , value );
+    }
 }
