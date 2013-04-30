@@ -1,6 +1,9 @@
 package org.codingmatters.random.values.base;
 
+import org.codingmatters.random.values.base.object.RandomObject;
 import org.codingmatters.random.values.base.utils.Assert;
+import org.codingmatters.random.values.base.utils.TestClass;
+import org.codingmatters.random.values.base.utils.TestClassFactory;
 import org.junit.Test;
 
 /**
@@ -35,5 +38,39 @@ public class RandomValuesTest {
     @Test
     public void testString() throws Exception {
         Assert.assertNotNull(RandomValues.string().value() ) ;
+    }
+
+    @Test
+    public void testObjectFromConstructor() throws Exception {
+        RandomObject<TestClass> random = RandomValues.fromConstructor(
+                TestClass.class.getConstructor(String.class, Float.class) , 
+                "test" ,
+                RandomValues.float_()
+        ) ;
+        
+        Assert.assertNotNull(random.value());
+    }
+
+    @Test
+    public void testObjectFromStaticConstructor() throws Exception {
+        RandomObject<TestClass> random = RandomValues.fromStaticConstructor(
+                TestClass.class.getMethod("create", String.class, Float.class),
+                "test",
+                RandomValues.float_()
+        ) ;
+
+        Assert.assertNotNull(random.value());
+    }
+
+    @Test
+    public void testObjectFromFactory() throws Exception {
+        RandomObject<TestClass> random = RandomValues.fromFactory(
+                new TestClassFactory() ,
+                TestClassFactory.class.getMethod("create", String.class, Float.class),
+                "test",
+                RandomValues.float_()
+        ) ;
+
+        Assert.assertNotNull(random.value());
     }
 }

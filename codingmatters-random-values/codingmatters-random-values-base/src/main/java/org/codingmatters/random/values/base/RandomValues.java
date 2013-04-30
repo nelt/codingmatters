@@ -1,11 +1,17 @@
 package org.codingmatters.random.values.base;
 
+import org.codingmatters.random.values.base.object.RandomObject;
+import org.codingmatters.random.values.base.object.internal.RandomObjectFromConstructor;
+import org.codingmatters.random.values.base.object.internal.RandomObjectFromFactoryMethod;
+import org.codingmatters.random.values.base.object.internal.RandomObjectFromStaticConstructor;
 import org.codingmatters.random.values.base.simple.RandomDouble;
 import org.codingmatters.random.values.base.simple.RandomFloat;
 import org.codingmatters.random.values.base.simple.RandomInteger;
 import org.codingmatters.random.values.base.simple.RandomLong;
 import org.codingmatters.random.values.base.string.RandomString;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.Random;
 
 /**
@@ -41,5 +47,18 @@ public class RandomValues {
 
     public static RandomString string() {
         return new RandomString() ;
+    }
+    
+    public static <T> RandomObject<T> fromConstructor( Constructor<T> constructor , Object ... params ) {
+        return new RandomObjectFromConstructor<T>( constructor , params ) ;
+    }
+
+    public static <T> RandomObject<T> fromStaticConstructor(Method staticConstructor , Object ... params) {
+        return new RandomObjectFromStaticConstructor<T>( staticConstructor , params ) ;
+    }
+
+
+    public static <T> RandomObject<T> fromFactory(Object factory, Method factoryMethod, Object ... params) {
+        return new RandomObjectFromFactoryMethod<T>( factory , factoryMethod , params ) ;
     }
 }
