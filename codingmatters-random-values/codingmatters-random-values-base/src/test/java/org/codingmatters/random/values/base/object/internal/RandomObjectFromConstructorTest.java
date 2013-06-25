@@ -60,4 +60,10 @@ public class RandomObjectFromConstructorTest {
         Assert.assertNotNull( actual.getStr() );
         Assert.assertEquals( new Float( 12 ) , actual.getF() );
     }
+
+
+    @Test(expected = Exception.class)
+    public void testWrongParameters() throws Exception {
+
+    }
 }

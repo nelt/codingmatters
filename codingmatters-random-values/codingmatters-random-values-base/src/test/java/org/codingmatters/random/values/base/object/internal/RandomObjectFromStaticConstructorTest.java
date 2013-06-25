@@ -18,7 +18,7 @@ public class RandomObjectFromStaticConstructorTest {
     @Test
     public void testRandomArguments() throws Exception {
         RandomObject<TestClass> random = new RandomObjectFromStaticConstructor<TestClass>(
-                TestClass.class.getMethod( "create", String.class, Float.class),
+                TestClass.class.getMethod("create", String.class, Float.class),
                 RandomValues.string(),
                 RandomValues.float_()
         ) ;
@@ -60,5 +60,10 @@ public class RandomObjectFromStaticConstructorTest {
         Assert.assertNotNull( actual ) ;
         Assert.assertNotNull( actual.getStr() );
         Assert.assertEquals( new Float( 12 ) , actual.getF() );
+    }
+
+    @Test(expected = Exception.class)
+    public void testWrongParameters() throws Exception {
+        
     }
 }

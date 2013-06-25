@@ -66,4 +66,9 @@ public class RandomObjectFromFactoryMethodTest {
         Assert.assertEquals( new Float( 12 ) , actual.getF() );
     }
 
+
+    @Test(expected = Exception.class)
+    public void testWrongParameters() throws Exception {
+
+    }
 }
