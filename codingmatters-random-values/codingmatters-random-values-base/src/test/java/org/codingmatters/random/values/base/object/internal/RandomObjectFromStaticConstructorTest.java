@@ -4,6 +4,7 @@ import org.codingmatters.random.values.base.RandomValues;
 import org.codingmatters.random.values.base.object.RandomObject;
 import org.codingmatters.random.values.base.utils.Assert;
 import org.codingmatters.random.values.base.utils.TestClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -62,6 +63,7 @@ public class RandomObjectFromStaticConstructorTest {
         Assert.assertEquals( new Float( 12 ) , actual.getF() );
     }
 
+    @Ignore
     @Test(expected = Exception.class)
     public void testWrongParameters() throws Exception {
         
