@@ -1,6 +1,7 @@
 package org.codingmatters.injector;
 
 
+import org.codingmatters.injector.beans.TestAnotation;
 import org.codingmatters.injector.beans.TestBean;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,5 +22,15 @@ public class PojoInjectorTest {
                 ;
         
         Assert.assertEquals("injected value", bean.getRawField());
+    }
+
+    @Test
+    public void testAnnotatedField() throws Exception {
+        TestBean bean = new PojoInjector()
+                .annotatedField("annotatedField", TestAnotation.class, "injected value")
+                .injectValues(new TestBean())
+                ;
+
+        Assert.assertEquals("injected value", bean.getAnnotatedField());
     }
 }

@@ -1,9 +1,11 @@
 package org.codingmatters.injector;
 
 import org.codingmatters.injector.exception.InjectionException;
+import org.codingmatters.injector.injectors.AnnotatedFieldInjector;
 import org.codingmatters.injector.injectors.Injector;
 import org.codingmatters.injector.injectors.RawFieldInjector;
 
+import java.lang.annotation.Annotation;
 import java.util.HashMap;
 
 /**
@@ -25,6 +27,11 @@ public class PojoInjector {
     
     public PojoInjector rawField(String field, Object value) {
         this.injectors.put(field, new RawFieldInjector(field, value)) ;
+        return this ;
+    }
+
+    public PojoInjector annotatedField(String field, Class<? extends Annotation> annotationClass, Object value) {
+        this.injectors.put(field, new AnnotatedFieldInjector(field, annotationClass, value)) ;
         return this ;
     }
 }

@@ -10,8 +10,15 @@ package org.codingmatters.injector.beans;
 public class TestBean {
     
     private String rawField ;
-
+    
+    @TestAnotation
+    private String annotatedField;
+    
     public String getRawField() {
         return rawField;
+    }
+
+    public String getAnnotatedField() {
+        return annotatedField;
     }
 }
