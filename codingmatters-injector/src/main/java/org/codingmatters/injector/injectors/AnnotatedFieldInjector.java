@@ -1,7 +1,5 @@
 package org.codingmatters.injector.injectors;
 
-import org.codingmatters.injector.exception.InjectionException;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
@@ -12,17 +10,19 @@ import java.lang.reflect.Field;
  * Time: 07:17
  * To change this template use File | Settings | File Templates.
  */
-public class AnnotatedFieldInjector extends FieldInjector {
-    private final Class<? extends Annotation> annotationClass;
+public class AnnotatedFieldInjector<T extends Annotation> extends FieldInjector {
+    private final Class<T> annotationClass;
+    private final AnnotationMatcher<T> matcher;
 
-    public AnnotatedFieldInjector(String field, Class<? extends Annotation> annotationClass, Object value) {
-        super(field, value) ;
+    public AnnotatedFieldInjector(Class<T> annotationClass, AnnotationMatcher<T> matcher, Object value) {
+        super(value) ;
         this.annotationClass = annotationClass;
+        this.matcher = matcher;
     }
 
     @Override
     protected boolean matches(Field field) throws Exception {
-        Annotation annotation = field.getAnnotation(this.annotationClass);
-        return annotation != null ;
+        T annotation = field.getAnnotation(this.annotationClass);
+        return annotation != null && this.matcher.matches(annotation);
     }
 }

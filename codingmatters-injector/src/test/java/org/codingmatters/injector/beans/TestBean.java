@@ -11,7 +11,7 @@ public class TestBean {
     
     private String rawField ;
     
-    @TestAnotation
+    @TestAnotation(name = "test")
     private String annotatedField;
     
     public String getRawField() {

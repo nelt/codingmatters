@@ -13,13 +13,16 @@ import java.lang.reflect.Field;
  */
 public class RawFieldInjector extends FieldInjector {
 
+    private final String field;
+
     public RawFieldInjector(String field, Object value) {
-        super(field, value);
+        super(value);
+        this.field = field;
     }
 
     @Override
     protected boolean matches(Field field) throws Exception {
-        return true ;
+        return field.getName().equals(this.field) ;
     }
 
 
