@@ -31,9 +31,7 @@ public class CharacterRange {
 
         CharacterRange that = (CharacterRange) o;
 
-        if (characters != null ? !characters.equals(that.characters) : that.characters != null) return false;
-
-        return true;
+        return !(characters != null ? !characters.equals(that.characters) : that.characters != null);
     }
 
     @Override

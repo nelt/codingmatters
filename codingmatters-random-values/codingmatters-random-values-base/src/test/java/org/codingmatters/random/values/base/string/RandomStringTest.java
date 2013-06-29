@@ -45,4 +45,12 @@ public class RandomStringTest {
         Assert.assertAllCharactersExpected(characters, actual);
     }
 
+
+    @Test
+    public void testFromRangeShortcut() throws Exception {
+        RandomString random = new RandomString().length(10).characters("abc") ;
+        String actual = random.value() ;
+        Assert.assertAllCharactersExpected("abc", actual);
+    }
+
 }

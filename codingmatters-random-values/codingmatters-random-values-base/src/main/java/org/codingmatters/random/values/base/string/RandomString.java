@@ -56,4 +56,9 @@ public class RandomString implements RandomValueBuilder <String> {
         this.range = characterRange ;
         return this ;
     }
+
+    public RandomString characters(String characters) {
+        this.range = new CharacterRange(characters) ;
+        return this ;
+    }
 }
