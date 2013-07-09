@@ -14,6 +14,7 @@
         <module>codingmatters-parent</module>
         <module>codingmatters-random-values</module>
         <module>codingmatters-injector</module>
+        <module>codingmatters-jee-test</module>
     </modules>
 
 
