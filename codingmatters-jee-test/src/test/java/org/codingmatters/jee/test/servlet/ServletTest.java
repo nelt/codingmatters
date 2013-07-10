@@ -1,6 +1,7 @@
 package org.codingmatters.jee.test.servlet;
 
 import org.apache.catalina.Context;
+import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -25,36 +26,48 @@ import java.util.Map;
  */
 public class ServletTest {
 
-    private Tomcat server;
-    private EchoServlet servlet;
+    static private Tomcat server;
+    static private EchoServlet servlet;
     
     private ObjectMapper mapper;
     private HttpClient client;
     
+    
+    
     @Before
     public void setUp() throws Exception {
-        this.server = new Tomcat();
-        this.server.setPort(9999);
-
-        Context ctx = server.addContext("/", MockHttpServletRequest.TRANSLATION_PATH);
-
-        this.servlet = new EchoServlet() ;
-        Tomcat.addServlet(ctx, "test", servlet);
         
-        ctx.addServletMapping("/*", "test");
-
-        this.server.start();
         this.mapper = new ObjectMapper() ;
         this.client = new DefaultHttpClient() ;
     }
+
+    @BeforeClass
+    static public void setupServer() throws LifecycleException {
+        server = new Tomcat();
+        server.setPort(9999);
+
+        Context ctx = server.addContext("/", MockHttpServletRequest.TRANSLATION_PATH);
+
+        servlet = new EchoServlet() ;
+        Tomcat.addServlet(ctx, "test", servlet);
+
+        ctx.addServletMapping("/*", "test");
+
+        server.start();
+    }
     
+    @AfterClass
+    static public void teardownServer() throws LifecycleException {
+        server.stop();
+    }
+
     @After
     public void tearDown() throws Exception {
-        this.server.stop();
+        
     }
 
     @Test
-    public void testTest() throws Exception {
+    public void testGet() throws Exception {
         HttpRequestBuilder requestBuilder = HttpRequestBuilder.get("localhost:9999") ;
         
         Map<String, Object> expected = this.executedRequestContent(requestBuilder);
@@ -62,15 +75,42 @@ public class ServletTest {
         
         Assert.assertEquals(expected, actual);
     }
-    
-    
-    
 
-    private Map executedRequestContent(HttpRequestBuilder requestBuilder) throws IOException {
+    @Test
+    public void testGetPath() throws Exception {
+        HttpRequestBuilder requestBuilder = HttpRequestBuilder.get("localhost:9999").path("/a/b/c") ;
+
+        Map<String, Object> expected = this.executedRequestContent(requestBuilder);
+        HashMap<String, Object> actual = EchoServlet.responseAsJSON(requestBuilder.build());
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void testGetPathWithTrailingSlash() throws Exception {
+        HttpRequestBuilder requestBuilder = HttpRequestBuilder.get("localhost:9999").path("/a/b/c/") ;
+
+        Map<String, Object> expected = this.executedRequestContent(requestBuilder);
+        HashMap<String, Object> actual = EchoServlet.responseAsJSON(requestBuilder.build());
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void testGetWithOneParam() throws Exception {
+        HttpRequestBuilder requestBuilder = HttpRequestBuilder.get("localhost:9999").param("name", "value") ;
+
+        Map<String, Object> expected = this.executedRequestContent(requestBuilder);
+        HashMap<String, Object> actual = EchoServlet.responseAsJSON(requestBuilder.build());
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    private Map executedRequestContent(HttpRequestBuilder requestBuilder) throws Exception {
         return this.asJsonMap(this.getContentAsString(this.executeRequest(requestBuilder)));
     }
 
-    private HttpResponse executeRequest(HttpRequestBuilder requestBuilder) throws IOException {
+    private HttpResponse executeRequest(HttpRequestBuilder requestBuilder) throws Exception {
         HttpResponse httpResponse = requestBuilder.execute(this.client) ;
         Assert.assertEquals(HttpStatus.SC_OK, httpResponse.getStatusLine().getStatusCode());
         return httpResponse;

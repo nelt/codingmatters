@@ -40,6 +40,7 @@ public class EchoServlet extends HttpServlet {
         json.put("PathInfo", req.getPathInfo()) ;
         json.put("PathTranslated", req.getPathTranslated()) ;
         json.put("Cookies", req.getCookies()) ;
+        json.put("Parameters", req.getParameterMap()) ;
         return json;
     }
 

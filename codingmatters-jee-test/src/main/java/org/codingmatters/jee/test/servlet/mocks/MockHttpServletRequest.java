@@ -35,8 +35,8 @@ public class MockHttpServletRequest implements HttpServletRequest {
     private Cookie[] cookies;
     private final String method;
     private HashMap<String, List<String>> headers = new HashMap<>() ;
-    private String pathInfo;
     private String path;
+    private HashMap<String, List<String>> parameters = new HashMap<>() ; 
 
     public MockHttpServletRequest(String method) {
         this.method = method;
@@ -73,12 +73,12 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
     @Override
     public Enumeration<String> getHeaders(String s) {
-        return this.hasHeader(s) ? new IteratorEnumeration<String>(this.headers.get(s).iterator()) : empty ;
+        return this.hasHeader(s) ? new IteratorEnumeration<>(this.headers.get(s).iterator()) : empty ;
     }
 
     @Override
     public Enumeration<String> getHeaderNames() {
-        return new IteratorEnumeration<String>(this.headers.keySet().iterator()) ;
+        return new IteratorEnumeration<>(this.headers.keySet().iterator()) ;
     }
 
     @Override
@@ -98,7 +98,15 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
     @Override
     public String getPathTranslated() {
-        return TRANSLATION_PATH + this.path;
+        return TRANSLATION_PATH + this.removeTrailingSlash(this.path);
+    }
+
+    private String removeTrailingSlash(String s) {
+        while(s.length() > 1 && s.endsWith("/")) {
+            s = s.substring(0, s.length() -1) ;
+            System.out.println(s);
+        }
+        return s ;
     }
 
     @Override
@@ -238,22 +246,37 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
     @Override
     public String getParameter(String s) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        if(this.hasParameter(s)) {
+            return this.parameters.get(s).get(0) ;
+        } else {
+            return null ;
+        }
     }
 
     @Override
     public Enumeration<String> getParameterNames() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return new IteratorEnumeration<String>(this.parameters.keySet().iterator()) ;
     }
 
     @Override
     public String[] getParameterValues(String s) {
-        return new String[0];  //To change body of implemented methods use File | Settings | File Templates.
+        if(this.hasParameter(s)) {
+            return this.parameters.get(s).toArray(new String [this.parameters.get(s).size()]) ;
+        }
+        return null ;
+    }
+
+    private boolean hasParameter(String s) {
+        return this.parameters.containsKey(s) && ! this.parameters.get(s).isEmpty();
     }
 
     @Override
     public Map<String, String[]> getParameterMap() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Map<String, String[]> result = new HashMap<>() ;
+        for (String name : this.parameters.keySet()) {
+            result.put(name, this.parameters.get(name).toArray(new String [this.parameters.get(name).size()])) ;
+        }
+        return result ;
     }
 
     @Override
@@ -392,5 +415,9 @@ public class MockHttpServletRequest implements HttpServletRequest {
     public MockHttpServletRequest path(String path) {
         this.path = path ;
         return this ;
+    }
+
+    public void parameter(String name, ArrayList<String> values) {
+        this.parameters.put(name, values) ;
     }
 }

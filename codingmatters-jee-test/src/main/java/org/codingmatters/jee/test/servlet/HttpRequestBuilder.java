@@ -3,11 +3,16 @@ package org.codingmatters.jee.test.servlet;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
 import org.codingmatters.jee.test.servlet.internal.Method;
 import org.codingmatters.jee.test.servlet.mocks.MockHttpServletRequest;
 
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,9 +43,24 @@ public class HttpRequestBuilder {
         return this ;
     }
     
-    public HttpResponse execute(HttpClient client) throws IOException {
-        HttpUriRequest request = this.method.request("http://" + this.address + this.getPath()) ;
+    public HttpResponse execute(HttpClient client) throws Exception {
+
+        URIBuilder uriBuilder = new URIBuilder()
+                .setScheme("http")
+                .setHost(this.address)
+                .setPath(this.getPath())
+                ;
+        
+        for (String name : this.params.keySet()) {
+            for (String value : this.params.get(name)) {
+                uriBuilder.setParameter(name, value) ;
+            }
+        }
+
+
+        HttpUriRequest request = this.method.request(uriBuilder.build().toString());
         request.setHeader("user-agent", USERAGENT );
+        
         return client.execute(request) ;
     }
 
@@ -54,7 +74,12 @@ public class HttpRequestBuilder {
         ;
 
         result.path(this.getPath());
-        
+
+        for (String name : this.params.keySet()) {
+            result.parameter(name, this.params.get(name)) ;
+        }
+
+
         return result;
     }
 
@@ -64,5 +89,15 @@ public class HttpRequestBuilder {
 
     public String getPath() {
         return this.path.startsWith("/") ? this.path : "/" + this.path ;
+    }
+    
+    private final HashMap<String, ArrayList<String>> params = new HashMap<>() ;
+    
+    public HttpRequestBuilder param(String name, String value) {
+        if(! this.params.containsKey(name)) {
+            this.params.put(name, new ArrayList<String>()) ;
+        }
+        this.params.get(name).add(value) ;
+        return this ;
     }
 }
