@@ -9,6 +9,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codingmatters.jee.test.servlet.mocks.MockHttpServletRequest;
 import org.junit.*;
 
 import java.io.*;
@@ -35,7 +36,7 @@ public class ServletTest {
         this.server = new Tomcat();
         this.server.setPort(9999);
 
-        Context ctx = server.addContext("/", new File(".").getAbsolutePath());
+        Context ctx = server.addContext("/", MockHttpServletRequest.TRANSLATION_PATH);
 
         this.servlet = new EchoServlet() ;
         Tomcat.addServlet(ctx, "test", servlet);
@@ -54,17 +55,27 @@ public class ServletTest {
 
     @Test
     public void testTest() throws Exception {
-        HttpRequestBuilder requestBuilder = HttpRequestBuilder.get("http://localhost:9999/") ;
-
-        HttpResponse httpResponse = requestBuilder.execute(this.client) ;
-        Assert.assertEquals(HttpStatus.SC_OK, httpResponse.getStatusLine().getStatusCode());
-
-        Map<String, Object> expected = this.asJsonMap(this.getContentAsString(httpResponse));
+        HttpRequestBuilder requestBuilder = HttpRequestBuilder.get("localhost:9999") ;
+        
+        Map<String, Object> expected = this.executedRequestContent(requestBuilder);
         HashMap<String, Object> actual = EchoServlet.responseAsJSON(requestBuilder.build());
         
         Assert.assertEquals(expected, actual);
     }
     
+    
+    
+
+    private Map executedRequestContent(HttpRequestBuilder requestBuilder) throws IOException {
+        return this.asJsonMap(this.getContentAsString(this.executeRequest(requestBuilder)));
+    }
+
+    private HttpResponse executeRequest(HttpRequestBuilder requestBuilder) throws IOException {
+        HttpResponse httpResponse = requestBuilder.execute(this.client) ;
+        Assert.assertEquals(HttpStatus.SC_OK, httpResponse.getStatusLine().getStatusCode());
+        return httpResponse;
+    }
+
     private Map asJsonMap(String content) throws IOException {
         return this.mapper.readValue(content, Map.class) ;
     }
