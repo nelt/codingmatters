@@ -1,6 +1,11 @@
 package org.codingmatters.code.analysis.processors;
 
+import com.sun.source.tree.MethodTree;
+import com.sun.source.tree.TreeVisitor;
+import com.sun.source.util.Trees;
+
 import javax.lang.model.element.*;
+import javax.lang.model.type.TypeVisitor;
 import javax.lang.model.util.AbstractElementVisitor7;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,9 +20,14 @@ import java.util.Set;
 public class VariableNameIndexer extends AbstractElementVisitor7<Void, Void> {
     
     private final Set<Name> variableNames = new HashSet<>() ;
-    
-    public static VariableNameIndexer index(TypeElement root) {
-        VariableNameIndexer result = new VariableNameIndexer();
+    private final Trees trees;
+
+    public VariableNameIndexer(Trees trees) {
+        this.trees = trees;
+    }
+
+    public static VariableNameIndexer index(TypeElement root, Trees trees) {
+        VariableNameIndexer result = new VariableNameIndexer(trees);
         root.accept(result, null) ;
         return result ;
     }
@@ -45,10 +55,11 @@ public class VariableNameIndexer extends AbstractElementVisitor7<Void, Void> {
     @Override
     public Void visitExecutable(ExecutableElement e, Void aVoid) {
         System.out.println("visitExecutable " + e);
-        for (Element element : e.getEnclosedElements()) {
-            element.accept(this, null);
-        }
-        System.out.println("--- " + e);
+        MethodTree tree = this.trees.getTree(e);
+        
+        TreeVisitor<Void, Void> methodTreeVisitor = new VariableReferenceInMethodChecker() ;
+        tree.accept(methodTreeVisitor, null);
+        System.out.println("\t" + tree);
         return null;
     }
 

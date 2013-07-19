@@ -1,9 +1,8 @@
 package org.codingmatters.code.analysis.processors;
 
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
+import com.sun.source.util.Trees;
+
+import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
@@ -26,9 +25,16 @@ public class TestInstanceVariableProcessor extends AbstractProcessor {
     
     private final String inspectedClassname ;
     private final HashSet<String> variableNames = new HashSet<>() ;
+    private Trees trees;
 
     public TestInstanceVariableProcessor(String inspectedClassname) {
         this.inspectedClassname = inspectedClassname;
+    }
+
+    @Override
+    public synchronized void init(ProcessingEnvironment processingEnv) {
+        super.init(processingEnv);
+        this.trees = Trees.instance(processingEnv) ;
     }
 
     @Override
@@ -39,7 +45,7 @@ public class TestInstanceVariableProcessor extends AbstractProcessor {
                         ElementKind.CLASS.equals(root.getKind()) && 
                                 ((TypeElement)root).getQualifiedName().toString().equals(this.inspectedClassname) 
                         ) {
-                    for (Name name : VariableNameIndexer.index((TypeElement) root).indexed()) {
+                    for (Name name : VariableNameIndexer.index((TypeElement) root, this.trees).indexed()) {
                         this.variableNames.add(name.toString());
                     }
                 }

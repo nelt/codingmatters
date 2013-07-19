@@ -20,13 +20,14 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 public class InstanceVariablesTest {
-
-
+    
     private JavaCompiler.CompilationTask task;
 
     @Before
     public void setUp() throws Exception {
-        this.prepareCompilation(new File("/home/nel/IdeaProjects/codingmatters/codingmatters-code-analysys/src/test/java/org/codingmatters/code/analysis/inspected"));
+        File compilationPath = new File("./src/test/java/org/codingmatters/code/analysis/inspected");
+        System.out.println(compilationPath.getAbsolutePath());
+        this.prepareCompilation(compilationPath);
     }
 
     private void prepareCompilation(File inspectedDir) throws IOException {
@@ -34,7 +35,7 @@ public class InstanceVariablesTest {
         StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
         fileManager.setLocation(
                 StandardLocation.SOURCE_PATH, 
-                Collections.singleton(inspectedDir)
+                Collections.singleton(inspectedDir.getAbsoluteFile())
         );
         Iterable<JavaFileObject> sources = fileManager.list(StandardLocation.SOURCE_PATH, "", Collections.singleton(JavaFileObject.Kind.SOURCE), true);
         for (JavaFileObject source : sources) {
