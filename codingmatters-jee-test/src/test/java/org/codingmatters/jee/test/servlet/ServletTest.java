@@ -95,7 +95,8 @@ public class ServletTest {
         Assert.assertEquals(expected, actual);
 
     }
-
+    
+    @Ignore
     @Test
     public void testGetWithOneParam() throws Exception {
         HttpRequestBuilder requestBuilder = HttpRequestBuilder.get("localhost:9999").param("name", "value") ;
