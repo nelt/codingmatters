@@ -8,6 +8,8 @@
         <groupId>org.codingmatters</groupId>
         <artifactId>codingmatters-parent</artifactId>
         <version>1-SNAPSHOT</version>
+        
+        <relativePath>../codingmatters-parent</relativePath>
     </parent>
     
     <artifactId>codingmatters-code-analysys</artifactId>

@@ -11,6 +11,7 @@ public class InspectedClass {
     private String stringField ;
     
     public String aMethod(String param) {
-        return this.stringField;
+        String result = param + this.stringField;
+        return stringField;
     }
 }

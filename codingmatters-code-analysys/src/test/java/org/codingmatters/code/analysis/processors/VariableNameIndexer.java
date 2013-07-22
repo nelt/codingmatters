@@ -5,7 +5,6 @@ import com.sun.source.tree.TreeVisitor;
 import com.sun.source.util.Trees;
 
 import javax.lang.model.element.*;
-import javax.lang.model.type.TypeVisitor;
 import javax.lang.model.util.AbstractElementVisitor7;
 import java.util.HashSet;
 import java.util.Set;
