@@ -8,10 +8,18 @@ package org.codingmatters.code.analysis.inspected;
  * To change this template use File | Settings | File Templates.
  */
 public class InspectedClass {
+    
     private String stringField ;
     
-    public String aMethod(String param) {
+    public String aMethodUsingStringField(String param) {
         String result = param + this.stringField;
-        return stringField;
+        return result;
     }
+    
+    public String aMethodNotUsingStringField(String param) {
+        String result = param ;
+        return result;
+    }
+    
+    
 }
