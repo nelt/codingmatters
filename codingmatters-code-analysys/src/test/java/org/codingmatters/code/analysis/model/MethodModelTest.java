@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.HashSet;
-import java.util.Set;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,31 +17,32 @@ import java.util.Set;
 public class MethodModelTest extends AbstractTest{
     
     private ClassModel classModel;
-    private MemberModel memberModel;
 
     @Before
     public void setUp() throws Exception {
         this.classModel = ClassModel.forName("org", "Test");
         this.classModel.member("field");
-        this.memberModel = this.classModel.member("field").getMember("field");
     }
     
     @Test
     public void testAddMemberUsage() throws Exception {
+        MemberModel memberModel = this.classModel.member("field").getMember("field");
         MethodModel actual = this.addMethod("method")
-                .uses(this.memberModel)
+                .usedMember(memberModel)
                 ;
-        Assert.assertEquals(set(this.memberModel), actual.getUsedMembers());
+        assertEquals(set(memberModel), actual.getUsedMembers());
+        assertTrue(actual.uses(memberModel));
     }
     
     @Test
     public void testAddMethodUsage() throws Exception {
         MethodModel usedMethod = this.addMethod("usedMethod");
         MethodModel actual = this.addMethod("method")
-                .uses(usedMethod)
+                .usedMethod(usedMethod)
                 ;
         
-        Assert.assertEquals(set(usedMethod), actual.getUsedMethods());
+        assertEquals(set(usedMethod), actual.getUsedMethods());
+        assertTrue(actual.uses(usedMethod));
     }
 
     private MethodModel addMethod(String method) {

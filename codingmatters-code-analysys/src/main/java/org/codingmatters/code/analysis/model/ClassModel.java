@@ -1,8 +1,10 @@
 package org.codingmatters.code.analysis.model;
 
 import org.codingmatters.code.analysis.model.lookup.Lookup;
+import org.codingmatters.code.analysis.model.lookup.LookupException;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -46,7 +48,13 @@ public class ClassModel {
     }
 
     public ClassModel method(String method) {
-        this.methods.put(method, new MethodModel(method, this));
+        return this.method(method, Usage.EMPTY);
+    }
+    
+    public ClassModel method(String method, Usage usage) {
+        MethodModel methodModel = new MethodModel(method, this);
+        this.methods.put(method, methodModel);
+        usage.apply(methodModel);
         return this;
     }
 
@@ -54,7 +62,18 @@ public class ClassModel {
         return this.methods.get(method);
     }
 
-    public Lookup<ClassModel, MethodModel> usingLookup(MemberModel first) {
-        return null;
+    public Lookup<MethodModel> usingLookup(final MemberModel member) {
+        return new Lookup<MethodModel>() {
+            @Override
+            public MethodModel[] lookup() throws LookupException {
+                LinkedList<MethodModel> result = new LinkedList<>() ;
+                for (MethodModel methodModel : ClassModel.this.methods.values()) {
+                    if(methodModel.uses(member)) {
+                        result.add(methodModel) ;
+                    }
+                }
+                return result.toArray(new MethodModel[result.size()]) ;
+            }
+        };
     }
 }

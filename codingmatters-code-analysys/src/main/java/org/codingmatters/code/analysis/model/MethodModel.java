@@ -30,7 +30,7 @@ public class MethodModel {
         return this.classModel;
     }
     
-    public MethodModel uses(MemberModel memberModel) {
+    public MethodModel usedMember(MemberModel memberModel) {
         this.usedMembers.add(memberModel);
         return this;
     }
@@ -39,12 +39,20 @@ public class MethodModel {
         return this.usedMembers;
     }
 
-    public MethodModel uses(MethodModel usedMethod) {
+    public MethodModel usedMethod(MethodModel usedMethod) {
         this.usedMethods.add(usedMethod);
         return this;
     }
 
     public Set getUsedMethods() {
         return this.usedMethods;
+    }
+
+    public boolean uses(MemberModel memberModel) {
+        return this.usedMembers.contains(memberModel);
+    }
+
+    public boolean uses(MethodModel usedMethod) {
+        return this.usedMethods.contains(usedMethod);
     }
 }

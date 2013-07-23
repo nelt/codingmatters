@@ -1,8 +1,5 @@
 package org.codingmatters.code.analysis.model;
 
-import org.codingmatters.code.analysis.model.lookup.Lookup;
-import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -15,13 +12,24 @@ import static org.junit.Assert.assertEquals;
  * To change this template use File | Settings | File Templates.
  */
 public class MemberUsageLookupTest extends AbstractTest {
-    
-    @Ignore
+
+    @Test
+    public void testNoUsage() throws Exception {
+        ClassModel model = ClassModel.forName("test", "Test")
+                .member("first")
+                .member("second")
+                
+                .method("usingFirst")
+                .method("notUsingAnything")
+                ;
+        assertEquals(
+                set(),
+                set(model.usingLookup(model.getMember("second")).lookup()));
+    }
+
     @Test
     public void testMemberUsage() throws Exception {
-        ClassModel model = ClassModel.forName("test", "Test");
-        
-        model
+        ClassModel model = ClassModel.forName("test", "Test")
                 .member("first")
                 .member("second")
                 
@@ -30,19 +38,36 @@ public class MemberUsageLookupTest extends AbstractTest {
                 .method("usingBoth")
                 .method("notUsingAnything")
                 ;
-        model.getMethod("usingFirst").uses(model.getMember("first"));
-        model.getMethod("usingSecond").uses(model.getMember("second"));
-        model.getMethod("usingBoth").uses(model.getMember("first"));
-        model.getMethod("usingBoth").uses(model.getMember("second"));
+        model.getMethod("usingFirst").usedMember(model.getMember("first"));
+        model.getMethod("usingSecond").usedMember(model.getMember("second"));
+        model.getMethod("usingBoth").usedMember(model.getMember("first"));
+        model.getMethod("usingBoth").usedMember(model.getMember("second"));
 
-        Lookup<ClassModel, MethodModel> usingFirstLookup = model.usingLookup(model.getMember("first"));
-        Lookup<ClassModel, MethodModel> usingSecondLookup = model.usingLookup(model.getMember("second"));
-        
         assertEquals(
                 set(model.getMethod("usingFirst"), model.getMethod("usingBoth")), 
-                set(usingFirstLookup.lookup()));
+                set(model.usingLookup(model.getMember("first")).lookup()));
         assertEquals(
                 set(model.getMethod("usingSecond"), model.getMethod("usingBoth")), 
-                set(usingSecondLookup.lookup()));
+                set(model.usingLookup(model.getMember("second")).lookup()));
+    }
+
+    @Test
+    public void testUsageShortcut() throws Exception {
+        ClassModel model = ClassModel.forName("test", "Test");
+        model
+            .member("member1")
+            .member("member2")
+            .method("method1")
+            .method("method2")
+            .method("method", new Usage()
+                    .member(model.getMember("member1"))
+                    .member(model.getMember("member2"))
+                    .method(model.getMethod("method1"))
+                    .method(model.getMethod("method2"))
+                )
+            ;
+        
+        assertEquals(set(model.getMember("member1"), model.getMember("member2")), model.getMethod("method").getUsedMembers());
+        assertEquals(set(model.getMethod("method1"), model.getMethod("method2")), model.getMethod("method").getUsedMethods());
     }
 }
