@@ -91,4 +91,24 @@ public class ClassModel {
             }
         };
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ClassModel that = (ClassModel) o;
+
+        if (className != null ? !className.equals(that.className) : that.className != null) return false;
+        if (packageName != null ? !packageName.equals(that.packageName) : that.packageName != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = packageName != null ? packageName.hashCode() : 0;
+        result = 31 * result + (className != null ? className.hashCode() : 0);
+        return result;
+    }
 }

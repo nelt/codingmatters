@@ -55,4 +55,24 @@ public class MethodModel {
     public boolean uses(MethodModel usedMethod) {
         return this.usedMethods.contains(usedMethod);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MethodModel that = (MethodModel) o;
+
+        if (classModel != null ? !classModel.equals(that.classModel) : that.classModel != null) return false;
+        if (method != null ? !method.equals(that.method) : that.method != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = method != null ? method.hashCode() : 0;
+        result = 31 * result + (classModel != null ? classModel.hashCode() : 0);
+        return result;
+    }
 }
