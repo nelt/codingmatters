@@ -8,5 +8,5 @@ package org.codingmatters.code.analysis.model.lookup;
  * To change this template use File | Settings | File Templates.
  */
 public interface Lookup<LookedUp>  {
-    LookedUp [] lookup() throws LookupException;
+    Iterable<LookedUp> lookup() throws LookupException;
 }

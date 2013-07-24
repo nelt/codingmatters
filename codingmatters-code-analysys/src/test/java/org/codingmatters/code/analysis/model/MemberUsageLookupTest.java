@@ -15,13 +15,13 @@ public class MemberUsageLookupTest extends AbstractTest {
 
     @Test
     public void testNoUsage() throws Exception {
-        ClassModel model = ClassModel.forName("test", "Test")
-                .member("first")
-                .member("second")
-                
-                .method("usingFirst")
-                .method("notUsingAnything")
-                ;
+        ClassModel model = ClassModel.forName("test", "Test") ;
+        model
+            .member("first")
+            .member("second")
+            .method("usingFirst", new Usage().member(model.getMember("first")))
+            .method("notUsingAnything")
+            ;
         assertEquals(
                 set(),
                 set(model.usingLookup(model.getMember("second")).lookup()));
@@ -29,19 +29,15 @@ public class MemberUsageLookupTest extends AbstractTest {
 
     @Test
     public void testMemberUsage() throws Exception {
-        ClassModel model = ClassModel.forName("test", "Test")
-                .member("first")
-                .member("second")
-                
-                .method("usingFirst")
-                .method("usingSecond")
-                .method("usingBoth")
-                .method("notUsingAnything")
-                ;
-        model.getMethod("usingFirst").usedMember(model.getMember("first"));
-        model.getMethod("usingSecond").usedMember(model.getMember("second"));
-        model.getMethod("usingBoth").usedMember(model.getMember("first"));
-        model.getMethod("usingBoth").usedMember(model.getMember("second"));
+        ClassModel model = ClassModel.forName("test", "Test") ;
+        model
+            .member("first")
+            .member("second")
+            .method("usingFirst", new Usage().member(model.getMember("first")))
+            .method("usingSecond", new Usage().member(model.getMember("second")))
+            .method("usingBoth", new Usage().member(model.getMember("first")).member(model.getMember("second")))
+            .method("notUsingAnything")
+            ;
 
         assertEquals(
                 set(model.getMethod("usingFirst"), model.getMethod("usingBoth")), 

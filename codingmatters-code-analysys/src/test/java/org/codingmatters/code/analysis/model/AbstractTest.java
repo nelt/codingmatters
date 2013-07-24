@@ -11,7 +11,15 @@ import java.util.Set;
  * To change this template use File | Settings | File Templates.
  */
 public class AbstractTest {
-
+    
+    protected Set set(Iterable elements) {
+        HashSet result = new HashSet();
+        for (Object element : elements) {
+            result.add(element);
+        }
+        return result;
+    }
+    
     protected Set set(Object ... elements) {
         HashSet result = new HashSet();
         if(elements != null) {

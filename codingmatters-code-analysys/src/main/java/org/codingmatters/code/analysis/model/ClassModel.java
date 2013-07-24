@@ -65,14 +65,29 @@ public class ClassModel {
     public Lookup<MethodModel> usingLookup(final MemberModel member) {
         return new Lookup<MethodModel>() {
             @Override
-            public MethodModel[] lookup() throws LookupException {
+            public Iterable<MethodModel> lookup() throws LookupException {
                 LinkedList<MethodModel> result = new LinkedList<>() ;
                 for (MethodModel methodModel : ClassModel.this.methods.values()) {
                     if(methodModel.uses(member)) {
                         result.add(methodModel) ;
                     }
                 }
-                return result.toArray(new MethodModel[result.size()]) ;
+                return result;
+            }
+        };
+    }
+
+    public Lookup<MethodModel> usingLookup(final MethodModel method) {
+        return new Lookup<MethodModel>() {
+            @Override
+            public Iterable<MethodModel> lookup() throws LookupException {
+                LinkedList<MethodModel> result = new LinkedList<>() ;
+                for (MethodModel methodModel : ClassModel.this.methods.values()) {
+                    if(methodModel.uses(method)) {
+                        result.add(methodModel) ;
+                    }
+                }
+                return result;
             }
         };
     }
