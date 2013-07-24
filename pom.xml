@@ -16,6 +16,7 @@
         <module>codingmatters-injector</module>
         <module>codingmatters-jee-test</module>
         <module>codingmatters-code-analysys</module>
+        <module>codingmatters-java-fx</module>
     </modules>
     
 </project>
