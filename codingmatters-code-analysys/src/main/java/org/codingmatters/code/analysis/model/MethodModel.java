@@ -75,4 +75,12 @@ public class MethodModel {
         result = 31 * result + (classModel != null ? classModel.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "MethodModel{" +
+                "method='" + method + '\'' +
+                ", classModel=" + classModel +
+                '}';
+    }
 }

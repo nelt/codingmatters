@@ -44,4 +44,12 @@ public class MemberModel {
         result = 31 * result + (classModel != null ? classModel.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "MemberModel{" +
+                "field='" + field + '\'' +
+                ", classModel=" + classModel +
+                '}';
+    }
 }

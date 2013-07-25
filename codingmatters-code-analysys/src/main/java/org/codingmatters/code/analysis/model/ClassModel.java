@@ -37,6 +37,10 @@ public class ClassModel {
     public String getClassName() {
         return className;
     }
+    
+    public String qualifiedName() {
+        return this.getPackageName() + "." + this.getClassName();
+    }
 
     public ClassModel member(String field) {
         this.members.put(field, new MemberModel(field, this));
@@ -110,5 +114,13 @@ public class ClassModel {
         int result = packageName != null ? packageName.hashCode() : 0;
         result = 31 * result + (className != null ? className.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ClassModel{" +
+                "packageName='" + packageName + '\'' +
+                ", className='" + className + '\'' +
+                '}';
     }
 }

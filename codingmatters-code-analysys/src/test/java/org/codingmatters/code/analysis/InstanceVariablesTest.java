@@ -17,7 +17,6 @@ import java.util.*;
  * User: nel
  * Date: 19/07/13
  * Time: 06:15
- * To change this template use File | Settings | File Templates.
  */
 public class InstanceVariablesTest {
     
