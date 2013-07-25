@@ -26,4 +26,5 @@ public class ModelEquasTest {
     public void testClass() throws Exception {
         EqualsVerifier.forClass(ClassModel.class).verify();
     }
+    
 }

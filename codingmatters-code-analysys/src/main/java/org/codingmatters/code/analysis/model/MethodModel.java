@@ -57,9 +57,9 @@ public class MethodModel {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof MethodModel)) return false;
 
         MethodModel that = (MethodModel) o;
 
@@ -70,7 +70,7 @@ public class MethodModel {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int result = method != null ? method.hashCode() : 0;
         result = 31 * result + (classModel != null ? classModel.hashCode() : 0);
         return result;

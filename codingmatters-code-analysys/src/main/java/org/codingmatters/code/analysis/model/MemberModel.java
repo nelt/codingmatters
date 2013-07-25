@@ -26,9 +26,9 @@ public class MemberModel {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof MemberModel)) return false;
 
         MemberModel that = (MemberModel) o;
 
@@ -39,7 +39,7 @@ public class MemberModel {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int result = field != null ? field.hashCode() : 0;
         result = 31 * result + (classModel != null ? classModel.hashCode() : 0);
         return result;

@@ -19,8 +19,8 @@ public class ClassModel {
         return new ClassModel(packageName, simpleName) ;
     }
     
-    private String packageName ;
-    private String className ;
+    private final String packageName ;
+    private final String className ;
     private final HashMap<String, MemberModel> members = new HashMap<>();
     private final HashMap<String, MethodModel> methods = new HashMap<>();
 
@@ -97,9 +97,9 @@ public class ClassModel {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof ClassModel)) return false;
 
         ClassModel that = (ClassModel) o;
 
@@ -110,7 +110,7 @@ public class ClassModel {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int result = packageName != null ? packageName.hashCode() : 0;
         result = 31 * result + (className != null ? className.hashCode() : 0);
         return result;
