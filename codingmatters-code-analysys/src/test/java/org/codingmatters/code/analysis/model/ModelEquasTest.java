@@ -14,16 +14,16 @@ public class ModelEquasTest {
 
     @Test
     public void testMember() throws Exception {
-        EqualsVerifier.forClass(MemberModel.class);
+        EqualsVerifier.forClass(MemberModel.class).verify();
     }
 
     @Test
     public void testMethod() throws Exception {
-        EqualsVerifier.forClass(MethodModel.class);
+        EqualsVerifier.forClass(MethodModel.class).verify();
     }
 
     @Test
     public void testClass() throws Exception {
-        EqualsVerifier.forClass(ClassModel.class);
+        EqualsVerifier.forClass(ClassModel.class).verify();
     }
 }
