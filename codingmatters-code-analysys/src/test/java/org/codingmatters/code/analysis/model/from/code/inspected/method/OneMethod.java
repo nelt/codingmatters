@@ -6,7 +6,7 @@ package org.codingmatters.code.analysis.model.from.code.inspected.method;
  * Date: 31/07/13
  * Time: 07:42
  */
-public class ClassWithOneMethod {
+public class OneMethod {
     public String method(String argument) {
         return "lo";
     }

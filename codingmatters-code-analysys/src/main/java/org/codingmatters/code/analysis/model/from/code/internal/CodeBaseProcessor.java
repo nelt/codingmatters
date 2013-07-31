@@ -1,16 +1,13 @@
 package org.codingmatters.code.analysis.model.from.code.internal;
 
+import com.sun.source.util.Trees;
 import org.codingmatters.code.analysis.model.ClassModel;
 import org.codingmatters.code.analysis.model.CodeBaseModel;
 
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
+import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.Name;
 import javax.lang.model.element.TypeElement;
 import java.util.Set;
 
@@ -25,9 +22,17 @@ import java.util.Set;
 @SupportedAnnotationTypes("*")
 public class CodeBaseProcessor extends AbstractProcessor {
     private final CodeBaseModel codeBaseModel;
+    private Trees trees;
 
     public CodeBaseProcessor(CodeBaseModel codeBaseModel) {
         this.codeBaseModel = codeBaseModel;
+    }
+
+
+    @Override
+    public synchronized void init(ProcessingEnvironment processingEnv) {
+        super.init(processingEnv);
+        this.trees = Trees.instance(processingEnv) ;
     }
 
     @Override
@@ -35,7 +40,10 @@ public class CodeBaseProcessor extends AbstractProcessor {
         if(! roundEnv.getRootElements().isEmpty()) {
             for (Element root : roundEnv.getRootElements()) {
                 if(ElementKind.CLASS.equals(root.getKind())) {
-                    this.codeBaseModel.addClass(ClassModel.forName(((TypeElement)root).getQualifiedName().toString()));
+                    ClassModel model = ClassModel.forName(((TypeElement) root).getQualifiedName().toString());
+                    this.codeBaseModel.addClass(model);
+                    
+                    root.accept(new ClassVisitor(model, trees), null);
                 }
             }
         }
