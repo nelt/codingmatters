@@ -16,8 +16,16 @@ import static org.junit.Assert.assertNotNull;
 public class ClassModelTest {
 
     @Test
-    public void testName() throws Exception {
+    public void testForName() throws Exception {
         ClassModel model = ClassModel.forName("org.codingmatters.code.analysis.inspected", "InspectedClass") ;
+
+        assertEquals("InspectedClass", model.getClassName());
+        assertEquals("org.codingmatters.code.analysis.inspected", model.getPackageName());
+    }
+    
+    @Test
+    public void testForQualifiedName() throws Exception {
+        ClassModel model = ClassModel.forName("org.codingmatters.code.analysis.inspected.InspectedClass") ;
 
         assertEquals("InspectedClass", model.getClassName());
         assertEquals("org.codingmatters.code.analysis.inspected", model.getPackageName());

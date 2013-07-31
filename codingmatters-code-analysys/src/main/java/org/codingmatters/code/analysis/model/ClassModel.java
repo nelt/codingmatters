@@ -19,6 +19,16 @@ public class ClassModel {
         return new ClassModel(packageName, simpleName) ;
     }
     
+    public static ClassModel forName(String qualified) {
+        String packageName = "";
+        String simpleName = qualified;
+        if(qualified.contains(".")) {
+            packageName = qualified.substring(0, qualified.lastIndexOf('.'));
+            simpleName = qualified.substring(qualified.lastIndexOf('.')+1);
+        }
+        return forName(packageName, simpleName);
+    }
+    
     private final String packageName ;
     private final String className ;
     private final HashMap<String, MemberModel> members = new HashMap<>();

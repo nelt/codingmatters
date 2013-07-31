@@ -37,9 +37,6 @@ public class InstanceVariablesTest {
                 Collections.singleton(inspectedDir.getAbsoluteFile())
         );
         Iterable<JavaFileObject> sources = fileManager.list(StandardLocation.SOURCE_PATH, "", Collections.singleton(JavaFileObject.Kind.SOURCE), true);
-        for (JavaFileObject source : sources) {
-            System.out.println(source);
-        }
         
         this.task = compiler.getTask(null, fileManager, null, null, null, sources);
     }
