@@ -2,7 +2,6 @@ package org.codingmatters.code.analysis.model.from.code.internal;
 
 import com.sun.source.util.Trees;
 import org.codingmatters.code.analysis.model.ClassModel;
-import org.codingmatters.code.analysis.processors.MethodScanner;
 
 import javax.lang.model.element.*;
 import javax.lang.model.util.AbstractElementVisitor7;
@@ -24,12 +23,6 @@ public class ClassVisitor extends AbstractElementVisitor7<Void, Void> {
     }
 
     @Override
-    public Void visitExecutable(ExecutableElement e, Void aVoid) {
-        this.trees.getTree(e).accept(new MethodScanner(this.model), null);
-        return null;
-    }
-
-    @Override
     public Void visitType(TypeElement e, Void aVoid) {
         for (Element element : e.getEnclosedElements()) {
             element.accept(this, null);
@@ -38,12 +31,19 @@ public class ClassVisitor extends AbstractElementVisitor7<Void, Void> {
     }
 
     @Override
-    public Void visitPackage(PackageElement e, Void aVoid) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public Void visitExecutable(ExecutableElement e, Void aVoid) {
+        this.trees.getTree(e).accept(new MethodScanner(this.model), null);
+        return null;
     }
 
     @Override
     public Void visitVariable(VariableElement e, Void aVoid) {
+        this.model.member(e.getSimpleName().toString());
+        return null;
+    }
+
+    @Override
+    public Void visitPackage(PackageElement e, Void aVoid) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 

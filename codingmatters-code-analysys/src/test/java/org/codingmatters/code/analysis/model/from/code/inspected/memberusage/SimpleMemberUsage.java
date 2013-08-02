@@ -1,0 +1,20 @@
+package org.codingmatters.code.analysis.model.from.code.inspected.memberusage;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: nelt
+ * Date: 02/08/13
+ * Time: 07:00
+ */
+public class SimpleMemberUsage {
+    private String member;
+    
+    public void memberAssignement() {
+        member = "yopyop";
+    }
+    
+    public void thisMemberAssignement() {
+        this.member = "yopyop";
+    }
+    
+}
