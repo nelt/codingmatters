@@ -44,12 +44,12 @@ public class ClassVisitor extends AbstractElementVisitor7<Void, Void> {
 
     @Override
     public Void visitPackage(PackageElement e, Void aVoid) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 
 
     @Override
     public Void visitTypeParameter(TypeParameterElement e, Void aVoid) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 }

@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
  * Date: 02/08/13
  * Time: 07:03
  */
-public class CodeBaseLoaderSimpleMemberUsageTest extends AbstractTest implements CodeBaseLoaderTestConstants {
+public class CodeBaseLoaderMemberUsageTest extends AbstractTest implements CodeBaseLoaderTestConstants {
 
     private ClassModel load() throws IOException {
         CodeBaseModel codeBase = new CodeBaseLoader()
