@@ -26,10 +26,11 @@ public class CodeBaseLoader {
         this.compiler = ToolProvider.getSystemJavaCompiler();
     }
 
-    public void addSourcePath(File directory) {
+    public CodeBaseLoader addSourcePath(File directory) {
         if(! this.sourcePaths.contains(directory)) {
             this.sourcePaths.add(directory);
         }
+        return this;
     }
 
     public CodeBaseModel load() throws IOException {        
