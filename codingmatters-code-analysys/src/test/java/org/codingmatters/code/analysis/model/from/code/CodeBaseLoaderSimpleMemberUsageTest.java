@@ -56,6 +56,16 @@ public class CodeBaseLoaderSimpleMemberUsageTest extends AbstractTest implements
         assertTrue(actual.uses(member));
     }
 
+    @Test
+    public void testInMethodCall() throws Exception {
+        ClassModel classModel = this.load();
+        
+        MemberModel member = classModel.getMember("member");
+        MethodModel actual = classModel.getMethod("memberInMethodCall");
+        
+        assertTrue(actual.uses(member));
+    }
+
 
 
 }

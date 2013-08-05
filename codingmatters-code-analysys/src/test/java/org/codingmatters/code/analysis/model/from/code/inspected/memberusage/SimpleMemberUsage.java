@@ -23,5 +23,9 @@ public class SimpleMemberUsage {
         }
     }
     
+    public void memberInMethodCall() {
+        this.method(member);
+    }
     
+    private void method(String arg) {}
 }
