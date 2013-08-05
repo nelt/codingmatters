@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -66,6 +67,27 @@ public class CodeBaseLoaderSimpleMemberUsageTest extends AbstractTest implements
         assertTrue(actual.uses(member));
     }
 
+    @Test
+    public void testInReturnStatement() throws Exception {
+        ClassModel classModel = this.load();
+        
+        MemberModel member = classModel.getMember("member");
+        MethodModel actual = classModel.getMethod("memberInReturn");
+        
+        assertTrue(actual.uses(member));
+    }
+
+    @Test
+    public void testHiddenMember() throws Exception {
+        ClassModel classModel = this.load();
+        
+        MemberModel member = classModel.getMember("member");
+        MethodModel actual = classModel.getMethod("memberHidden");
+        
+        assertFalse(actual.uses(member));
+    }
+
+    
 
 
 }

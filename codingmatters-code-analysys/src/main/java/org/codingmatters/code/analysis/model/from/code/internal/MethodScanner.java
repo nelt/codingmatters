@@ -18,6 +18,7 @@ public class MethodScanner extends TreeScanner<Void, Void> {
 
     private final ClassModel model;
     private MethodModel currentMethodModel = null;
+    private SymbolTable currentSymbolTable;
 
     public MethodScanner(ClassModel model) {
         this.model = model;
@@ -27,6 +28,8 @@ public class MethodScanner extends TreeScanner<Void, Void> {
     public Void visitMethod(MethodTree methodTree, Void aVoid) {
         this.model.method(methodTree.getName().toString());
         this.currentMethodModel = this.model.getMethod(methodTree.getName().toString());
+
+        this.currentSymbolTable = new SymbolTable();
         return super.visitMethod(methodTree, aVoid);
     }
 
@@ -39,9 +42,23 @@ public class MethodScanner extends TreeScanner<Void, Void> {
     @Override
     public Void visitIdentifier(IdentifierTree identifierTree, Void aVoid) {
         String variable = identifierTree.getName().toString();
-        if(this.model.getMember(variable) != null) {
+        if(this.isMember(variable) && ! this.isMasked(variable)) {
             this.currentMethodModel.usedMember(this.model.getMember(variable));
         }
         return super.visitIdentifier(identifierTree, aVoid);    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    private boolean isMember(String variable) {
+        return this.model.getMember(variable) != null;
+    }
+
+    private boolean isMasked(String variable) {
+        return this.currentSymbolTable.contains(variable);
+    }
+
+    @Override
+    public Void visitVariable(VariableTree variableTree, Void aVoid) {
+        this.currentSymbolTable.add(variableTree.getName().toString());
+        return super.visitVariable(variableTree, aVoid);    //To change body of overridden methods use File | Settings | File Templates.
     }
 }

@@ -33,4 +33,8 @@ public class SimpleMemberUsage {
         return this.member;
     }
     
+    public String memberHidden() {
+        String member = "yopyop tagada" ;
+        return member;
+    }
 }
