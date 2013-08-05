@@ -15,7 +15,7 @@ public class MethodScanner extends TreeScanner<Void, Void> {
 
     private final ClassModel model;
     private MethodModel currentMethodModel = null;
-    private SymbolTable currentSymbolTable;
+    private SymbolTable currentSymbolTable = new SymbolTable() ;
 
     public MethodScanner(ClassModel model) {
         this.model = model;
@@ -26,7 +26,7 @@ public class MethodScanner extends TreeScanner<Void, Void> {
         this.model.method(methodTree.getName().toString());
         this.currentMethodModel = this.model.getMethod(methodTree.getName().toString());
 
-        this.currentSymbolTable = new SymbolTable();
+        this.currentSymbolTable.clear();
         return super.visitMethod(methodTree, aVoid);
     }
 
@@ -42,7 +42,7 @@ public class MethodScanner extends TreeScanner<Void, Void> {
         if(this.isMember(variable) && ! this.isMasked(variable)) {
             this.currentMethodModel.usedMember(this.model.getMember(variable));
         }
-        return super.visitIdentifier(identifierTree, aVoid);    //To change body of overridden methods use File | Settings | File Templates.
+        return super.visitIdentifier(identifierTree, aVoid);
     }
 
     private boolean isMember(String variable) {
