@@ -54,4 +54,12 @@ public class SymbolTable {
     public void clear() {
         this.symbols.clear();
     }
+
+    public SymbolTable child() {
+        return new SymbolTable(this);
+    }
+
+    public SymbolTable parent() {
+        return this.parent;
+    }
 }

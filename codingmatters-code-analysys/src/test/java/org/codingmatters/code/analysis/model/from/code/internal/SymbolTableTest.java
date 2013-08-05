@@ -3,6 +3,7 @@ package org.codingmatters.code.analysis.model.from.code.internal;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -50,5 +51,25 @@ public class SymbolTableTest {
         actual.clear();
         
         assertTrue(actual.isEmpty());
+    }
+
+    @Test
+    public void testChild() throws Exception {
+        SymbolTable parent = new SymbolTable();
+        parent.add("s1");
+        
+        SymbolTable actual = parent.child();
+        actual.add("s2");
+
+
+        assertTrue(actual.contains("s1"));
+        assertTrue(actual.contains("s2"));
+    }
+
+    @Test
+    public void testParent() throws Exception {
+        SymbolTable parent = new SymbolTable();
+
+        assertEquals(parent , parent.child().parent());
     }
 }

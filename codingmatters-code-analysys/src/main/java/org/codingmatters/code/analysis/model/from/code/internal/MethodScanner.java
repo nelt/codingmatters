@@ -1,9 +1,6 @@
 package org.codingmatters.code.analysis.model.from.code.internal;
 
-import com.sun.source.tree.IdentifierTree;
-import com.sun.source.tree.MemberSelectTree;
-import com.sun.source.tree.MethodTree;
-import com.sun.source.tree.VariableTree;
+import com.sun.source.tree.*;
 import com.sun.source.util.TreeScanner;
 import org.codingmatters.code.analysis.model.ClassModel;
 import org.codingmatters.code.analysis.model.MethodModel;
@@ -59,6 +56,16 @@ public class MethodScanner extends TreeScanner<Void, Void> {
     @Override
     public Void visitVariable(VariableTree variableTree, Void aVoid) {
         this.currentSymbolTable.add(variableTree.getName().toString());
-        return super.visitVariable(variableTree, aVoid);    //To change body of overridden methods use File | Settings | File Templates.
+        return super.visitVariable(variableTree, aVoid);
+    }
+
+    @Override
+    public Void visitBlock(BlockTree blockTree, Void aVoid) {
+        this.currentSymbolTable = this.currentSymbolTable.child();
+        try {
+            return super.visitBlock(blockTree, aVoid);
+        } finally {
+            this.currentSymbolTable = this.currentSymbolTable.parent();
+        }
     }
 }

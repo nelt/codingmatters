@@ -33,8 +33,23 @@ public class SimpleMemberUsage {
         return this.member;
     }
     
-    public String memberHidden() {
+    public String memberMasked() {
         String member = "yopyop tagada" ;
         return member;
+    }
+    
+    public String maskedInBlock() {
+        for(int i = 0; i < 10; i++) {
+            String member = "yopyop tagada" ;
+            return member;
+        }
+        return null;
+    }
+    
+    public String previouslyMaskedMember() {
+        for(int i = 0; i < 10; i++) {
+            String member = "yopyop tagada" ;
+        }
+        return member ;
     }
 }

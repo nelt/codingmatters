@@ -78,13 +78,33 @@ public class CodeBaseLoaderSimpleMemberUsageTest extends AbstractTest implements
     }
 
     @Test
-    public void testHiddenMember() throws Exception {
+    public void testMaskedMember() throws Exception {
         ClassModel classModel = this.load();
         
         MemberModel member = classModel.getMember("member");
-        MethodModel actual = classModel.getMethod("memberHidden");
+        MethodModel actual = classModel.getMethod("memberMasked");
         
         assertFalse(actual.uses(member));
+    }
+    
+    @Test
+    public void testMaskedMemberInBlock() throws Exception {
+        ClassModel classModel = this.load();
+        
+        MemberModel member = classModel.getMember("member");
+        MethodModel actual = classModel.getMethod("maskedInBlock");
+        
+        assertFalse(actual.uses(member));
+    }
+    
+    @Test
+    public void testPreviouslyMaskedMember() throws Exception {
+        ClassModel classModel = this.load();
+        
+        MemberModel member = classModel.getMember("member");
+        MethodModel actual = classModel.getMethod("previouslyMaskedMember");
+        
+        assertTrue(actual.uses(member));
     }
 
     
