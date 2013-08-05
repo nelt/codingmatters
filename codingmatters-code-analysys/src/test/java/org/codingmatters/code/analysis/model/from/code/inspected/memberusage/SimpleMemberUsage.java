@@ -28,4 +28,9 @@ public class SimpleMemberUsage {
     }
     
     private void method(String arg) {}
+    
+    public String memberInReturn() {
+        return this.member;
+    }
+    
 }
