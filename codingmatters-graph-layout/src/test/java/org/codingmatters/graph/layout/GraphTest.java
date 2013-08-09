@@ -45,7 +45,8 @@ public class GraphTest {
 
     @Test
     public void testEdges() throws Exception {
-        Graph graph = new Graph("G").directed()
+        Graph graph = new Graph("G")
+                .directed()
                 .edge("One", "Two")
                 .edge("Three", "Two")
                 ;
@@ -62,7 +63,7 @@ public class GraphTest {
         Graph graph = new Graph("G").directed()
                 .subgraph(new Graph("SG").edge("a", "b"))
                 ;
-
+        
         assertEquals(
                 "digraph G {\n" +
                         "\tsubgraph SG {\n" +

@@ -1,5 +1,7 @@
 package org.codingmatters.graph.layout;
 
+import org.codingmatters.graph.layout.internal.IndentedFormatter;
+
 /**
  * Created with IntelliJ IDEA.
  * User: nelt
@@ -14,8 +16,8 @@ public class Edge {
         this.left = left;
         this.right = right;
     }
-
-    public String asDot() {
-        return this.left + "->" + this.right + ";";
+    
+    public void format(IndentedFormatter formatter) {
+        formatter.line(this.left + "->" + this.right + ";");
     }
 }
