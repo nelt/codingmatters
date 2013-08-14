@@ -1,5 +1,6 @@
 package org.codingmatters.graph.layout.attributes;
 
+import com.sun.javafx.binding.StringFormatter;
 import org.codingmatters.graph.layout.internal.IndentedFormatter;
 
 /**
@@ -11,7 +12,18 @@ import org.codingmatters.graph.layout.internal.IndentedFormatter;
 public class GraphAttributeFormatter {
     
     private final AttributeList attributes = new AttributeList();
+
+    public void format(IndentedFormatter formatter) {
+        this.attributes.format(formatter);
+    }
     
+    public GraphAttributeFormatter label(String label) {
+        this.attributes.attribute("label", label);
+        return this;
+    }
+
+
+
     public GraphAttributeFormatter damping(double damping) {
         this.attributes.attribute("Damping", damping);
         return this;
@@ -52,16 +64,22 @@ public class GraphAttributeFormatter {
         return this;
     }
     
-    
-
-    public GraphAttributeFormatter label(String label) {
-        this.attributes.attribute("label", label);
+    public GraphAttributeFormatter center(boolean center) {
+        this.attributes.attribute("center", center);
         return this;
     }
-    
-    
 
-    public void format(IndentedFormatter formatter) {
-        this.attributes.format(formatter);
+    public GraphAttributeFormatter center() {
+        return this.center(true);
+    }
+    
+    public GraphAttributeFormatter charset(String charset) {
+        this.attributes.attribute("charset", charset);
+        return this;
+    }
+
+    public GraphAttributeFormatter clusterRank(ClusterMode mode) {
+        this.attributes.attribute("clusterrank", mode.formatted());
+        return this;
     }
 }

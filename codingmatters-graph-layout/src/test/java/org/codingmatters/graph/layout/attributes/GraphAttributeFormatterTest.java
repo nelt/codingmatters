@@ -48,4 +48,38 @@ public class GraphAttributeFormatterTest {
         new GraphAttributeFormatter().backgroundGradient(WeightedColors.list(WeightedColors.weighted(Color.named("blue"), 0.3f), WeightedColors.weighted(Color.named("yellow")))).format(this.formatter);
         Assert.assertEquals("bgcolor = blue;0.3:yellow", this.formatter.formatted());
     }
+
+    @Test
+    public void testCenter() throws Exception {
+        new GraphAttributeFormatter().center().format(this.formatter);
+        Assert.assertEquals("center = true", this.formatter.formatted());
+    }
+
+    @Test
+    public void testCenterTrue() throws Exception {
+        new GraphAttributeFormatter().center(true).format(this.formatter);
+        Assert.assertEquals("center = true", this.formatter.formatted());
+    }
+    
+    @Test
+    public void testCenterFalse() throws Exception {
+        new GraphAttributeFormatter().center(false).format(this.formatter);
+        Assert.assertEquals("center = false", this.formatter.formatted());
+    }
+
+    @Test
+    public void testClusterRankLocal() throws Exception {
+        new GraphAttributeFormatter().clusterRank(ClusterMode.LOCAL).format(this.formatter);
+        Assert.assertEquals("clusterrank = local", this.formatter.formatted());
+    }
+    @Test
+    public void testClusterRankGlobal() throws Exception {
+        new GraphAttributeFormatter().clusterRank(ClusterMode.GLOBAL).format(this.formatter);
+        Assert.assertEquals("clusterrank = global", this.formatter.formatted());
+    }
+    @Test
+    public void testClusterRankNone() throws Exception {
+        new GraphAttributeFormatter().clusterRank(ClusterMode.NONE).format(this.formatter);
+        Assert.assertEquals("clusterrank = none", this.formatter.formatted());
+    }
 }
