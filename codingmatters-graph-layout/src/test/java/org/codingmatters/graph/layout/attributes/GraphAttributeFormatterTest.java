@@ -82,4 +82,48 @@ public class GraphAttributeFormatterTest {
         new GraphAttributeFormatter().clusterRank(ClusterMode.NONE).format(this.formatter);
         Assert.assertEquals("clusterrank = none", this.formatter.formatted());
     }
+
+    @Test
+    public void testLabelJustificationLeft() throws Exception {
+        new GraphAttributeFormatter().labelJustification(Justification.LEFT).format(this.formatter);
+        Assert.assertEquals("labeljust = l", this.formatter.formatted());
+    }
+
+    @Test
+    public void testLabelJustificationCenter() throws Exception {
+        new GraphAttributeFormatter().labelJustification(Justification.CENTER).format(this.formatter);
+        Assert.assertEquals("labeljust = c", this.formatter.formatted());
+    }
+
+    @Test
+    public void testLabelJustificationRight() throws Exception {
+        new GraphAttributeFormatter().labelJustification(Justification.RIGHT).format(this.formatter);
+        Assert.assertEquals("labeljust = r", this.formatter.formatted());
+    }
+
+
+    @Test
+    public void testLabelLocalisationTop() throws Exception {
+        new GraphAttributeFormatter().labelLocalisation(VerticalLocalisation.TOP).format(this.formatter);
+        Assert.assertEquals("labelloc = t", this.formatter.formatted());
+    }
+    @Test
+    public void testLabelLocalisationBottom() throws Exception {
+        new GraphAttributeFormatter().labelLocalisation(VerticalLocalisation.BOTTOM).format(this.formatter);
+        Assert.assertEquals("labelloc = b", this.formatter.formatted());
+    }
+
+    @Test
+    public void testLayers() throws Exception {
+        new GraphAttributeFormatter().layers("a", "b", "c").format(this.formatter);
+        Assert.assertEquals("layers = a:b:c", this.formatter.formatted());
+    }
+
+    @Test
+    public void testSelectedLayers() throws Exception {
+        new GraphAttributeFormatter().selectedLayers("a", "b").format(this.formatter);
+        Assert.assertEquals("layerselect = a:b", this.formatter.formatted());
+    }
+    
+    
 }

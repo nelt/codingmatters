@@ -37,6 +37,11 @@ public class AttributeList {
         return this.attribute(name, Double.toString(d));
     }
 
+
+    public AttributeList attribute(String name, int d) {
+        return this.attribute(name, Integer.toString(d));
+    }
+
     public AttributeList attribute(String name, boolean b) {
         this.attribute(name, Boolean.toString(b));
         return this;
