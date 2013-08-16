@@ -509,5 +509,59 @@ public class GraphAttributeFormatter {
         return this;
     }
 
+    public GraphAttributeFormatter smoothing(SmootType type) {
+        this.attributes.attribute("smoothing", type.formatted());
+        return this;
+    }
+    
+    public GraphAttributeFormatter sortv(int sortv) {
+        this.attributes.attribute("sortv", sortv);
+        return this;
+    }
+    
+    public GraphAttributeFormatter splines() {
+        this.attributes.attribute("splines", true);
+        return this;
+    }
+    
+    public GraphAttributeFormatter splines(SplineType type) {
+        this.attributes.attribute("splines", type.formatted());
+        return this;
+    }
+    
+    public GraphAttributeFormatter start(StartType type, int seed) {
+        this.attributes.attribute("start", type.formatted() + " " + seed);
+        return this;
+    }
+    
+    public GraphAttributeFormatter start(StartType type) {
+        this.attributes.attribute("start", type.formatted());
+        return this;
+    }
+    
+    public GraphAttributeFormatter style(Style.GraphStyle style) {
+        this.attributes.attribute("style", style.formatted());
+        return this;
+    }
+    
+    public GraphAttributeFormatter stylesheet(String path) {
+        this.attributes.attribute("stylesheet", path);
+        return this;
+    }
+    
+    public GraphAttributeFormatter target(String target) {
+        this.attributes.attribute("target", target);
+        return this;
+    }
+    
+    public GraphAttributeFormatter trueColor() {
+        this.attributes.attribute("truecolor", true);
+        return this;
+    }
+    
+    public GraphAttributeFormatter voroMargin(double size) {
+        this.attributes.attribute("voro_margin", size);
+        return this;
+    }
 
 }
