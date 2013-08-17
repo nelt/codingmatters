@@ -8,208 +8,249 @@ import org.codingmatters.graph.layout.internal.IndentedFormatter;
  * Date: 11/08/13
  * Time: 07:39
  */
-public class GraphAttributeFormatter {
+public class GraphAttributeFormatter implements GraphAttributes {
     
     private final AttributeList attributes = new AttributeList();
 
+    @Override
     public void append(IndentedFormatter formatter) {
         this.attributes.format(formatter);
     }
     
 
 
-    public GraphAttributeFormatter damping(double damping) {
+    @Override
+    public GraphAttributes damping(double damping) {
         this.attributes.attribute("Damping", damping);
         return this;
     }
     
-    public GraphAttributeFormatter k(double damping) {
+    @Override
+    public GraphAttributes k(double damping) {
         this.attributes.attribute("K", damping);
         return this;
     }
 
-    public GraphAttributeFormatter url(String url) {
+    @Override
+    public GraphAttributes url(String url) {
         this.attributes.attribute("URL", url);
         return this;
     }
     
-    public GraphAttributeFormatter aspect(double ratio) {
+    @Override
+    public GraphAttributes aspect(double ratio) {
         this.attributes.attribute("aspect", ratio);
         return this;
     }
     
-    public GraphAttributeFormatter aspect(double ratio, int passCount) {
+    @Override
+    public GraphAttributes aspect(double ratio, int passCount) {
         this.attributes.attribute("aspect", Double.toString(ratio) + ", " + passCount);
         return this;
     }
 
-    public GraphAttributeFormatter boundingBox(long lowerLeftX, long lowerLeftY, long upperRightX, long upperRightY) {
+    @Override
+    public GraphAttributes boundingBox(long lowerLeftX, long lowerLeftY, long upperRightX, long upperRightY) {
         this.attributes.attribute("bb", String.format("%s,%s,%s,%s", lowerLeftX,lowerLeftY, upperRightX, upperRightY));
         return this;
     }
 
-    public GraphAttributeFormatter backgroundColor(Color color) {
+    @Override
+    public GraphAttributes backgroundColor(Color color) {
         this.attributes.attribute("bgcolor", color.formatted());
         return this;
     }
 
-    public GraphAttributeFormatter backgroundGradient(WeightedColors weightedColors) {
+    @Override
+    public GraphAttributes backgroundGradient(WeightedColors weightedColors) {
         this.attributes.attribute("bgcolor", weightedColors.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter center(boolean center) {
+    @Override
+    public GraphAttributes center(boolean center) {
         this.attributes.attribute("center", center);
         return this;
     }
 
-    public GraphAttributeFormatter center() {
+    @Override
+    public GraphAttributes center() {
         return this.center(true);
     }
     
-    public GraphAttributeFormatter charset(String charset) {
+    @Override
+    public GraphAttributes charset(String charset) {
         this.attributes.attribute("charset", charset);
         return this;
     }
 
-    public GraphAttributeFormatter clusterRank(ClusterMode mode) {
+    @Override
+    public GraphAttributes clusterRank(ClusterMode mode) {
         this.attributes.attribute("clusterrank", mode.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter colorScheme(String scheme) {
+    @Override
+    public GraphAttributes colorScheme(String scheme) {
         this.attributes.attribute("colorscheme", scheme);
         return this;
     }
     
-    public GraphAttributeFormatter comment(String comment) {
+    @Override
+    public GraphAttributes comment(String comment) {
         this.attributes.attribute("comment", comment);
         return this;
     }
     
-    public GraphAttributeFormatter compound(boolean compound) {
+    @Override
+    public GraphAttributes compound(boolean compound) {
         this.attributes.attribute("compound", compound);
         return this;
     }
-    public GraphAttributeFormatter compound() {
+    @Override
+    public GraphAttributes compound() {
         this.attributes.attribute("compound", true);
         return this;
     }
     
-    public GraphAttributeFormatter concentrate(boolean concentrate) {
+    @Override
+    public GraphAttributes concentrate(boolean concentrate) {
         this.attributes.attribute("concentrate", concentrate);
         return this;
     }
-    public GraphAttributeFormatter concentrate() {
+    @Override
+    public GraphAttributes concentrate() {
         this.attributes.attribute("concentrate", true);
         return this;
     }
     
-    public GraphAttributeFormatter defaultdist(double dist) {
+    @Override
+    public GraphAttributes defaultdist(double dist) {
         this.attributes.attribute("defaultdist", dist);
         return this;
     }
     
-    public GraphAttributeFormatter dimension(int dim) {
+    @Override
+    public GraphAttributes dimension(int dim) {
         this.attributes.attribute("dim", dim);
         return this;
     }
     
-    public GraphAttributeFormatter dpi(double dpi) {
+    @Override
+    public GraphAttributes dpi(double dpi) {
         this.attributes.attribute("dpi", dpi);
         return this;
     }
     
-    public GraphAttributeFormatter epsilon(double epsilon) {
+    @Override
+    public GraphAttributes epsilon(double epsilon) {
         this.attributes.attribute("epsilon", epsilon);
         return this;
     }
     
-    public GraphAttributeFormatter fontColor(Color color) {
+    @Override
+    public GraphAttributes fontColor(Color color) {
         this.attributes.attribute("fontcolor", color.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter fontName(String font) {
+    @Override
+    public GraphAttributes fontName(String font) {
         this.attributes.attribute("fontname", font);
         return this;
     }
     
-    public GraphAttributeFormatter fontNames(String fonts) {
+    @Override
+    public GraphAttributes fontNames(String fonts) {
         this.attributes.attribute("fontnames", fonts);
         return this;
     }
     
-    public GraphAttributeFormatter fontPath(String path) {
+    @Override
+    public GraphAttributes fontPath(String path) {
         this.attributes.attribute("fontpath", path);
         return this;
     }
     
-    public GraphAttributeFormatter fontSize(double size) {
+    @Override
+    public GraphAttributes fontSize(double size) {
         this.attributes.attribute("fontsize", size);
         return this;
     }
     
-    public GraphAttributeFormatter forceLabels(boolean force) {
+    @Override
+    public GraphAttributes forceLabels(boolean force) {
         this.attributes.attribute("forcelabels", force);
         return this;
     }
     
-    public GraphAttributeFormatter forceLabels() {
+    @Override
+    public GraphAttributes forceLabels() {
         return this.forceLabels(true);
     }
     
-    public GraphAttributeFormatter gradientAngle(int angle) {
+    @Override
+    public GraphAttributes gradientAngle(int angle) {
         this.attributes.attribute("gradientangle", angle);
         return this;
     }
     
-    public GraphAttributeFormatter href(String href) {
+    @Override
+    public GraphAttributes href(String href) {
         this.attributes.attribute("href", href);
         return this;
     }
     
-    public GraphAttributeFormatter id(String id) {
+    @Override
+    public GraphAttributes id(String id) {
         this.attributes.attribute("id", id);
         return this;
     }
     
-    public GraphAttributeFormatter imagePath(String path) {
+    @Override
+    public GraphAttributes imagePath(String path) {
         this.attributes.attribute("imagepath", path);
         return this;
     }
 
-    public GraphAttributeFormatter label(String label) {
+    @Override
+    public GraphAttributes label(String label) {
         this.attributes.attribute("label", label);
         return this;
     }
     
-    public GraphAttributeFormatter labelScheme(String scheme) {
+    @Override
+    public GraphAttributes labelScheme(String scheme) {
         this.attributes.attribute("label_scheme", scheme);
         return this;
     }
     
-    public GraphAttributeFormatter labelJustification(Justification justification) {
+    @Override
+    public GraphAttributes labelJustification(Justification justification) {
         this.attributes.attribute("labeljust", justification.formatted());
         return this;
     }
 
-    public GraphAttributeFormatter labelLocalisation(VerticalLocalisation localisation) {
+    @Override
+    public GraphAttributes labelLocalisation(VerticalLocalisation localisation) {
         this.attributes.attribute("labelloc", localisation.formatted());
         return this;
     }
 
 
-    public GraphAttributeFormatter landscape(boolean landscape) {
+    @Override
+    public GraphAttributes landscape(boolean landscape) {
         this.attributes.attribute("landscape", landscape);
         return this;
     }
 
-    public GraphAttributeFormatter landscape() {
+    @Override
+    public GraphAttributes landscape() {
         return this.landscape(true);
     }
     
-    public GraphAttributeFormatter layers(String ... layers) {
+    @Override
+    public GraphAttributes layers(String... layers) {
         this.attributes.attribute("layers", join(layers, ":"));
         return this;
     }
@@ -229,337 +270,404 @@ public class GraphAttributeFormatter {
         return result.toString();
     }
 
-    public GraphAttributeFormatter selectedLayers(String ... layers) {
+    @Override
+    public GraphAttributes selectedLayers(String... layers) {
         this.attributes.attribute("layerselect", join(layers, ":"));
         return this;
     }
     
-    public GraphAttributeFormatter levels(int levels) {
+    @Override
+    public GraphAttributes levels(int levels) {
         this.attributes.attribute("levels", levels);
         return this;
     }
     
-    public GraphAttributeFormatter levelsGap(double gap) {
+    @Override
+    public GraphAttributes levelsGap(double gap) {
         this.attributes.attribute("levelsgap", gap);
         return this;
     }
     
-    public GraphAttributeFormatter logicalHeight(double inches) {
+    @Override
+    public GraphAttributes logicalHeight(double inches) {
         this.attributes.attribute("lheight", inches);
         return this;
     }
 
-    public GraphAttributeFormatter logicalWidth(double inches) {
+    @Override
+    public GraphAttributes logicalWidth(double inches) {
         this.attributes.attribute("lwidtth", inches);
         return this;
     }
     
-    public GraphAttributeFormatter labelPosition(Point p) {
+    @Override
+    public GraphAttributes labelPosition(Point p) {
         this.attributes.attribute("lp", p.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter margin(double margin) {
+    @Override
+    public GraphAttributes margin(double margin) {
         this.attributes.attribute("margin", margin);
         return this;
     }
     
-    public GraphAttributeFormatter margin(Point margin) {
+    @Override
+    public GraphAttributes margin(Point margin) {
         this.attributes.attribute("margin", margin.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter maximumIteration(int max) {
+    @Override
+    public GraphAttributes maximumIteration(int max) {
         this.attributes.attribute("maxiter", max);
         return this;
     }
     
-    public GraphAttributeFormatter multiplicativeScale(double factor) {
+    @Override
+    public GraphAttributes multiplicativeScale(double factor) {
         this.attributes.attribute("mclimit", factor);
         return this;
     }
     
-    public GraphAttributeFormatter minimumSeparation(double distance) {
+    @Override
+    public GraphAttributes minimumSeparation(double distance) {
         this.attributes.attribute("mclimit", distance);
         return this;
     }
     
-    public GraphAttributeFormatter mode(String mode) {
+    @Override
+    public GraphAttributes mode(String mode) {
         this.attributes.attribute("mode", mode);
         return this;
     }
     
-    public GraphAttributeFormatter model(String model) {
+    @Override
+    public GraphAttributes model(String model) {
         this.attributes.attribute("model", model);
         return this;
     }
     
-    public GraphAttributeFormatter adjascentNodeSeparation(double distance) {
+    @Override
+    public GraphAttributes adjascentNodeSeparation(double distance) {
         this.attributes.attribute("nodesep", distance);
         return this;
     }
     
-    public GraphAttributeFormatter nojustify(boolean no) {
+    @Override
+    public GraphAttributes nojustify(boolean no) {
         this.attributes.attribute("nojustify", no);
         return this;
     }
 
-    public GraphAttributeFormatter nojustify() {
+    @Override
+    public GraphAttributes nojustify() {
         return this.nojustify(true);
     }
     
-    public GraphAttributeFormatter normalize(double angle) {
+    @Override
+    public GraphAttributes normalize(double angle) {
         this.attributes.attribute("normalize", angle);
         return this;
     }
 
-    public GraphAttributeFormatter nslimit(double v) {
+    @Override
+    public GraphAttributes nslimit(double v) {
         this.attributes.attribute("nslimit", v);
         return this;
     }
 
-    public GraphAttributeFormatter nslimit1(double v) {
+    @Override
+    public GraphAttributes nslimit1(double v) {
         this.attributes.attribute("nslimit1", v);
         return this;
     }
     
-    public GraphAttributeFormatter ordering(Ordering ordering) {
+    @Override
+    public GraphAttributes ordering(Ordering ordering) {
         this.attributes.attribute("ordering", ordering.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter outputOrder(OutputMode mode) {
+    @Override
+    public GraphAttributes outputOrder(OutputMode mode) {
         this.attributes.attribute("outputorder", mode.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter overlap() {
+    @Override
+    public GraphAttributes overlap() {
         this.attributes.attribute("overlap", true);
         return this;
     }
     
-    public GraphAttributeFormatter defaultOverlap() {
+    @Override
+    public GraphAttributes defaultOverlap() {
         this.attributes.attribute("overlap", "false");
         return this;
     }
     
-    public GraphAttributeFormatter scaleOverlap() {
+    @Override
+    public GraphAttributes scaleOverlap() {
         this.attributes.attribute("overlap", "scale");
         return this;
     }
     
-    public GraphAttributeFormatter prismOverlap() {
+    @Override
+    public GraphAttributes prismOverlap() {
         this.attributes.attribute("overlap", "prism");
         return this;
     }
     
-    public GraphAttributeFormatter prismOverlap(int attemps) {
+    @Override
+    public GraphAttributes prismOverlap(int attemps) {
         this.attributes.attribute("overlap", "prism" + attemps);
         return this;
     }
     
-    public GraphAttributeFormatter voronoiOverlap() {
+    @Override
+    public GraphAttributes voronoiOverlap() {
         this.attributes.attribute("overlap", "voronoi");
         return this;
     }
     
-    public GraphAttributeFormatter scalexyOverlap() {
+    @Override
+    public GraphAttributes scalexyOverlap() {
         this.attributes.attribute("overlap", "scalexy");
         return this;
     }
     
-    public GraphAttributeFormatter compressOverlap() {
+    @Override
+    public GraphAttributes compressOverlap() {
         this.attributes.attribute("overlap", "compress");
         return this;
     }
     
-    public GraphAttributeFormatter overlapScaling(double scaling) {
+    @Override
+    public GraphAttributes overlapScaling(double scaling) {
         this.attributes.attribute("overlap_scaling", scaling);
         return this;
     }
     
-    public GraphAttributeFormatter pack() {
+    @Override
+    public GraphAttributes pack() {
         this.attributes.attribute("pack", true);
         return this;
     }
 
-    public GraphAttributeFormatter pack(int margin) {
+    @Override
+    public GraphAttributes pack(int margin) {
         this.attributes.attribute("pack", margin);
         return this;
     }
     
-    public GraphAttributeFormatter packMode(PackingMode mode) {
+    @Override
+    public GraphAttributes packMode(PackingMode mode) {
         this.attributes.attribute("packmode", mode.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter arrayPackMode(String flags) {
+    @Override
+    public GraphAttributes arrayPackMode(String flags) {
         this.attributes.attribute("packmode", "array_" + flags);
         return this;
     }
     
-    public GraphAttributeFormatter arrayPackMode(String flags, int columns) {
+    @Override
+    public GraphAttributes arrayPackMode(String flags, int columns) {
         this.attributes.attribute("packmode", "array_" + flags + columns);
         return this;
     }
     
-    public GraphAttributeFormatter pad(double spec) {
+    @Override
+    public GraphAttributes pad(double spec) {
         this.attributes.attribute("pad", spec);
         return this;
     }
     
-    public GraphAttributeFormatter pad(Point spec) {
+    @Override
+    public GraphAttributes pad(Point spec) {
         this.attributes.attribute("pad", spec.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter page(double spec) {
+    @Override
+    public GraphAttributes page(double spec) {
         this.attributes.attribute("page", spec);
         return this;
     }
     
-    public GraphAttributeFormatter page(Point spec) {
+    @Override
+    public GraphAttributes page(Point spec) {
         this.attributes.attribute("page", spec.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter pageDir(Direction dir) {
+    @Override
+    public GraphAttributes pageDir(Direction dir) {
         this.attributes.attribute("pagedir", dir.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter quadTree(QuadType type) {
+    @Override
+    public GraphAttributes quadTree(QuadType type) {
         this.attributes.attribute("quadtree", type.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter quantum(double quantum) {
+    @Override
+    public GraphAttributes quantum(double quantum) {
         this.attributes.attribute("quantum", quantum);
         return this;
     }
     
-    public GraphAttributeFormatter rank(RankType type, Direction direction) {
+    @Override
+    public GraphAttributes rank(RankType type, Direction direction) {
         this.attributes.attribute("rank", type.formatted());
         this.attributes.attribute("rankdir", direction.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter rankSeparation(String spec) {
+    @Override
+    public GraphAttributes rankSeparation(String spec) {
         this.attributes.attribute("ranksep", spec);
         return this;
     }
     
-    public GraphAttributeFormatter aspectRatio(double ratio) {
+    @Override
+    public GraphAttributes aspectRatio(double ratio) {
         this.attributes.attribute("ratio", ratio);
         return this;
     }
     
-    public GraphAttributeFormatter aspectRatio(AspectRatioType type) {
+    @Override
+    public GraphAttributes aspectRatio(AspectRatioType type) {
         this.attributes.attribute("ratio", type.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter runCrossMinimizationTwice() {
+    @Override
+    public GraphAttributes runCrossMinimizationTwice() {
         this.attributes.attribute("remincross", true);
         return this;
     }
     
-    public GraphAttributeFormatter repulsiveForcePower(double force) {
+    @Override
+    public GraphAttributes repulsiveForcePower(double force) {
         this.attributes.attribute("repulsiveforce", force);
         return this;
     }
     
-    public GraphAttributeFormatter resolution(double dpi) {
+    @Override
+    public GraphAttributes resolution(double dpi) {
         this.attributes.attribute("resolution", dpi);
         return this;
     }
     
-    public GraphAttributeFormatter rootNode(String node) {
+    @Override
+    public GraphAttributes rootNode(String node) {
         this.attributes.attribute("root", node);
         return this;
     }
     
-    public GraphAttributeFormatter rotate(int angle) {
+    @Override
+    public GraphAttributes rotate(int angle) {
         this.attributes.attribute("rotate", angle);
         return this;
     }
     
-    public GraphAttributeFormatter rotation(double counterClockwise) {
+    @Override
+    public GraphAttributes rotation(double counterClockwise) {
         this.attributes.attribute("rotation", counterClockwise);
         return this;
     }
     
-    public GraphAttributeFormatter scale(double spec) {
+    @Override
+    public GraphAttributes scale(double spec) {
         this.attributes.attribute("scale", spec);
         return this;
     }
     
-    public GraphAttributeFormatter scale(Point spec) {
+    @Override
+    public GraphAttributes scale(Point spec) {
         this.attributes.attribute("scale", spec.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter searchsize(int searchsize) {
+    @Override
+    public GraphAttributes searchsize(int searchsize) {
         this.attributes.attribute("searchsize", searchsize);
         return this;
     }
     
-    public GraphAttributeFormatter size(double size) {
+    @Override
+    public GraphAttributes size(double size) {
         this.attributes.attribute("size", size);
         return this;
     }
 
-    public GraphAttributeFormatter smoothing(SmootType type) {
+    @Override
+    public GraphAttributes smoothing(SmootType type) {
         this.attributes.attribute("smoothing", type.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter sortv(int sortv) {
+    @Override
+    public GraphAttributes sortv(int sortv) {
         this.attributes.attribute("sortv", sortv);
         return this;
     }
     
-    public GraphAttributeFormatter splines() {
+    @Override
+    public GraphAttributes splines() {
         this.attributes.attribute("splines", true);
         return this;
     }
     
-    public GraphAttributeFormatter splines(SplineType type) {
+    @Override
+    public GraphAttributes splines(SplineType type) {
         this.attributes.attribute("splines", type.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter start(StartType type, int seed) {
+    @Override
+    public GraphAttributes start(StartType type, int seed) {
         this.attributes.attribute("start", type.formatted() + " " + seed);
         return this;
     }
     
-    public GraphAttributeFormatter start(StartType type) {
+    @Override
+    public GraphAttributes start(StartType type) {
         this.attributes.attribute("start", type.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter style(Style.GraphStyle style) {
+    @Override
+    public GraphAttributes style(Style.GraphStyle style) {
         this.attributes.attribute("style", style.formatted());
         return this;
     }
     
-    public GraphAttributeFormatter stylesheet(String path) {
+    @Override
+    public GraphAttributes stylesheet(String path) {
         this.attributes.attribute("stylesheet", path);
         return this;
     }
     
-    public GraphAttributeFormatter target(String target) {
+    @Override
+    public GraphAttributes target(String target) {
         this.attributes.attribute("target", target);
         return this;
     }
     
-    public GraphAttributeFormatter trueColor() {
+    @Override
+    public GraphAttributes trueColor() {
         this.attributes.attribute("truecolor", true);
         return this;
     }
     
-    public GraphAttributeFormatter voroMargin(double size) {
+    @Override
+    public GraphAttributes voroMargin(double size) {
         this.attributes.attribute("voro_margin", size);
         return this;
     }

@@ -1,6 +1,6 @@
 package org.codingmatters.graph.layout;
 
-import org.codingmatters.graph.layout.attributes.GraphAttributeFormatter;
+import org.codingmatters.graph.layout.attributes.Attributes;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -16,7 +16,7 @@ public class GraphAttributeTest {
     @Test
     public void testGraphAttributes() throws Exception {
         Graph graph = new Graph("G")
-                .graphAttributes(new GraphAttributeFormatter().charset("UTF-8"))
+                .graphAttributes(Attributes.graph().charset("UTF-8"))
                 ;
 
         assertEquals(
