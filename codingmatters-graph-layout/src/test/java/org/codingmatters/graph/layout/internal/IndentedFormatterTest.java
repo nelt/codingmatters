@@ -64,4 +64,72 @@ public class IndentedFormatterTest {
                 .line("%s %s %s" , "a", "b", "c");
         assertEquals("a b c", formatter.formatted());
     }
+
+    @Test
+    public void testAppend() throws Exception {
+        IndentedFormatter formatter = new IndentedFormatter()
+                .append("start")
+                .append(" ")
+                .append("end")
+                ;
+        assertEquals("start end", formatter.formatted());
+    }
+    
+    @Test
+    public void testAppendThenLine() throws Exception {
+        IndentedFormatter formatter = new IndentedFormatter()
+                .append("start")
+                .append(" ")
+                .append("end")
+                .line("last line")
+                ;
+        assertEquals("start end\nlast line", formatter.formatted());
+    }
+
+
+    @Test
+    public void testLineThenAppendThenLine() throws Exception {
+        IndentedFormatter formatter = new IndentedFormatter()
+                .line("first line")
+                .append("start")
+                .append(" ")
+                .append("end")
+                .line("last line")
+                ;
+        assertEquals("first line\nstart end\nlast line", formatter.formatted());
+    }
+    
+    
+    @Test
+    public void testAppendThenLineThenAppend() throws Exception {
+        IndentedFormatter formatter = new IndentedFormatter()
+                .append("start")
+                .append(" ")
+                .append("end")
+                .line("a line")
+                .append("end")
+                ;
+        assertEquals("start end\na line\nend", formatter.formatted());
+    }
+
+    @Test
+    public void testInedntedAppend() throws Exception {
+        IndentedFormatter formatter = new IndentedFormatter()
+                .indent()
+                .append("start")
+                .append(" ")
+                .append("end")
+                ;
+        assertEquals("\tstart end", formatter.formatted());
+    }
+
+    @Test
+    public void testAppendThenAppend() throws Exception {
+        IndentedFormatter formatter = new IndentedFormatter()
+                .append("first")
+                .newLine()
+                .append("last")
+                ;
+        assertEquals("first\nlast", formatter.formatted());
+    }
 }
