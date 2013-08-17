@@ -1,5 +1,6 @@
 package org.codingmatters.graph.layout;
 
+import org.codingmatters.graph.layout.attributes.GraphAttributeFormatter;
 import org.codingmatters.graph.layout.internal.IndentedFormatter;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ public class Graph {
     private GraphType type = GraphType.GRAPH;
     private final ArrayList<Edge> edges = new ArrayList<>();
     private final ArrayList<Graph> subgraphs = new ArrayList<>();
-    
+    private GraphAttributeFormatter graphAttributes;
+
     public Graph(String id) {
         this.id = id;
     }
@@ -29,6 +31,7 @@ public class Graph {
     private void format(IndentedFormatter result) {
         result.line("%s %s {", this.type.token() ,this.id);
         
+        this.formatAttributes(result);
         this.formatSubgraphs(result);
         this.formatEdges(result);
 
@@ -65,5 +68,21 @@ public class Graph {
         graph.type = GraphType.SUBGRAPH;
         this.subgraphs.add(graph);
         return this;
+    }
+
+    public Graph graphAttributes(GraphAttributeFormatter attributes) {
+        this.graphAttributes = attributes;
+        return this;
+    }
+    
+    private void formatAttributes(IndentedFormatter result) {
+        if(this.graphAttributes != null) {
+            result.indent();
+            result.append("graph [");
+            this.graphAttributes.append(result);
+            result.append("];");
+            result.newLine();
+            result.unindent();
+        }
     }
 }

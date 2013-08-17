@@ -25,7 +25,7 @@ public class AttributeList {
             }
             result.append(name).append(" = ").append(this.attributes.get(name));
         }
-        formatter.line(result.toString());
+        formatter.append(result.toString());
     }
 
     public AttributeList attribute(String name, String value) {

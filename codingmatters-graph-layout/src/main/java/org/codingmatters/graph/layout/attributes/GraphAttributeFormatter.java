@@ -12,7 +12,7 @@ public class GraphAttributeFormatter {
     
     private final AttributeList attributes = new AttributeList();
 
-    public void format(IndentedFormatter formatter) {
+    public void append(IndentedFormatter formatter) {
         this.attributes.format(formatter);
     }
     
