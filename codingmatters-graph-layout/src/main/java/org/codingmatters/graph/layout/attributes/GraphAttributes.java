@@ -1,227 +1,224 @@
 package org.codingmatters.graph.layout.attributes;
 
-import org.codingmatters.graph.layout.internal.IndentedFormatter;
-
 /**
  * Created with IntelliJ IDEA.
  * User: nelt
  * Date: 17/08/13
  * Time: 13:51
  */
-public interface GraphAttributes {
-    void append(IndentedFormatter formatter);
+public interface GraphAttributes <B extends AttributesFormatter> extends AttributesFormatter {
 
-    GraphAttributes damping(double damping);
+    B damping(double damping);
 
-    GraphAttributes k(double damping);
+    B k(double damping);
 
-    GraphAttributes url(String url);
+    B url(String url);
 
-    GraphAttributes aspect(double ratio);
+    B aspect(double ratio);
 
-    GraphAttributes aspect(double ratio, int passCount);
+    B aspect(double ratio, int passCount);
 
-    GraphAttributes boundingBox(long lowerLeftX, long lowerLeftY, long upperRightX, long upperRightY);
+    B boundingBox(long lowerLeftX, long lowerLeftY, long upperRightX, long upperRightY);
 
-    GraphAttributes backgroundColor(Color color);
+    B backgroundColor(Color color);
 
-    GraphAttributes backgroundGradient(WeightedColors weightedColors);
+    B backgroundGradient(WeightedColors weightedColors);
 
-    GraphAttributes center(boolean center);
+    B center(boolean center);
 
-    GraphAttributes center();
+    B center();
 
-    GraphAttributes charset(String charset);
+    B charset(String charset);
 
-    GraphAttributes clusterRank(ClusterMode mode);
+    B clusterRank(ClusterMode mode);
 
-    GraphAttributes colorScheme(String scheme);
+    B colorScheme(String scheme);
 
-    GraphAttributes comment(String comment);
+    B comment(String comment);
 
-    GraphAttributes compound(boolean compound);
+    B compound(boolean compound);
 
-    GraphAttributes compound();
+    B compound();
 
-    GraphAttributes concentrate(boolean concentrate);
+    B concentrate(boolean concentrate);
 
-    GraphAttributes concentrate();
+    B concentrate();
 
-    GraphAttributes defaultdist(double dist);
+    B defaultdist(double dist);
 
-    GraphAttributes dimension(int dim);
+    B dimension(int dim);
 
-    GraphAttributes dpi(double dpi);
+    B dpi(double dpi);
 
-    GraphAttributes epsilon(double epsilon);
+    B epsilon(double epsilon);
 
-    GraphAttributes fontColor(Color color);
+    B fontColor(Color color);
 
-    GraphAttributes fontName(String font);
+    B fontName(String font);
 
-    GraphAttributes fontNames(String fonts);
+    B fontNames(String fonts);
 
-    GraphAttributes fontPath(String path);
+    B fontPath(String path);
 
-    GraphAttributes fontSize(double size);
+    B fontSize(double size);
 
-    GraphAttributes forceLabels(boolean force);
+    B forceLabels(boolean force);
 
-    GraphAttributes forceLabels();
+    B forceLabels();
 
-    GraphAttributes gradientAngle(int angle);
+    B gradientAngle(int angle);
 
-    GraphAttributes href(String href);
+    B href(String href);
 
-    GraphAttributes id(String id);
+    B id(String id);
 
-    GraphAttributes imagePath(String path);
+    B imagePath(String path);
 
-    GraphAttributes label(String label);
+    B label(String label);
 
-    GraphAttributes labelScheme(String scheme);
+    B labelScheme(String scheme);
 
-    GraphAttributes labelJustification(Justification justification);
+    B labelJustification(Justification justification);
 
-    GraphAttributes labelLocalisation(VerticalLocalisation localisation);
+    B labelLocalisation(VerticalLocalisation localisation);
 
-    GraphAttributes landscape(boolean landscape);
+    B landscape(boolean landscape);
 
-    GraphAttributes landscape();
+    B landscape();
 
-    GraphAttributes layers(String... layers);
+    B layers(String... layers);
 
-    GraphAttributes selectedLayers(String... layers);
+    B selectedLayers(String... layers);
 
-    GraphAttributes levels(int levels);
+    B levels(int levels);
 
-    GraphAttributes levelsGap(double gap);
+    B levelsGap(double gap);
 
-    GraphAttributes logicalHeight(double inches);
+    B logicalHeight(double inches);
 
-    GraphAttributes logicalWidth(double inches);
+    B logicalWidth(double inches);
 
-    GraphAttributes labelPosition(Point p);
+    B labelPosition(Point p);
 
-    GraphAttributes margin(double margin);
+    B margin(double margin);
 
-    GraphAttributes margin(Point margin);
+    B margin(Point margin);
 
-    GraphAttributes maximumIteration(int max);
+    B maximumIteration(int max);
 
-    GraphAttributes multiplicativeScale(double factor);
+    B multiplicativeScale(double factor);
 
-    GraphAttributes minimumSeparation(double distance);
+    B minimumSeparation(double distance);
 
-    GraphAttributes mode(String mode);
+    B mode(String mode);
 
-    GraphAttributes model(String model);
+    B model(String model);
 
-    GraphAttributes adjascentNodeSeparation(double distance);
+    B adjascentNodeSeparation(double distance);
 
-    GraphAttributes nojustify(boolean no);
+    B nojustify(boolean no);
 
-    GraphAttributes nojustify();
+    B nojustify();
 
-    GraphAttributes normalize(double angle);
+    B normalize(double angle);
 
-    GraphAttributes nslimit(double v);
+    B nslimit(double v);
 
-    GraphAttributes nslimit1(double v);
+    B nslimit1(double v);
 
-    GraphAttributes ordering(Ordering ordering);
+    B ordering(Ordering ordering);
 
-    GraphAttributes outputOrder(OutputMode mode);
+    B outputOrder(OutputMode mode);
 
-    GraphAttributes overlap();
+    B overlap();
 
-    GraphAttributes defaultOverlap();
+    B defaultOverlap();
 
-    GraphAttributes scaleOverlap();
+    B scaleOverlap();
 
-    GraphAttributes prismOverlap();
+    B prismOverlap();
 
-    GraphAttributes prismOverlap(int attemps);
+    B prismOverlap(int attemps);
 
-    GraphAttributes voronoiOverlap();
+    B voronoiOverlap();
 
-    GraphAttributes scalexyOverlap();
+    B scalexyOverlap();
 
-    GraphAttributes compressOverlap();
+    B compressOverlap();
 
-    GraphAttributes overlapScaling(double scaling);
+    B overlapScaling(double scaling);
 
-    GraphAttributes pack();
+    B pack();
 
-    GraphAttributes pack(int margin);
+    B pack(int margin);
 
-    GraphAttributes packMode(PackingMode mode);
+    B packMode(PackingMode mode);
 
-    GraphAttributes arrayPackMode(String flags);
+    B arrayPackMode(String flags);
 
-    GraphAttributes arrayPackMode(String flags, int columns);
+    B arrayPackMode(String flags, int columns);
 
-    GraphAttributes pad(double spec);
+    B pad(double spec);
 
-    GraphAttributes pad(Point spec);
+    B pad(Point spec);
 
-    GraphAttributes page(double spec);
+    B page(double spec);
 
-    GraphAttributes page(Point spec);
+    B page(Point spec);
 
-    GraphAttributes pageDir(Direction dir);
+    B pageDir(Direction dir);
 
-    GraphAttributes quadTree(QuadType type);
+    B quadTree(QuadType type);
 
-    GraphAttributes quantum(double quantum);
+    B quantum(double quantum);
 
-    GraphAttributes rank(RankType type, Direction direction);
+    B rank(RankType type, Direction direction);
 
-    GraphAttributes rankSeparation(String spec);
+    B rankSeparation(String spec);
 
-    GraphAttributes aspectRatio(double ratio);
+    B aspectRatio(double ratio);
 
-    GraphAttributes aspectRatio(AspectRatioType type);
+    B aspectRatio(AspectRatioType type);
 
-    GraphAttributes runCrossMinimizationTwice();
+    B runCrossMinimizationTwice();
 
-    GraphAttributes repulsiveForcePower(double force);
+    B repulsiveForcePower(double force);
 
-    GraphAttributes resolution(double dpi);
+    B resolution(double dpi);
 
-    GraphAttributes rootNode(String node);
+    B rootNode(String node);
 
-    GraphAttributes rotate(int angle);
+    B rotate(int angle);
 
-    GraphAttributes rotation(double counterClockwise);
+    B rotation(double counterClockwise);
 
-    GraphAttributes scale(double spec);
+    B scale(double spec);
 
-    GraphAttributes scale(Point spec);
+    B scale(Point spec);
 
-    GraphAttributes searchsize(int searchsize);
+    B searchsize(int searchsize);
 
-    GraphAttributes size(double size);
+    B size(double size);
 
-    GraphAttributes smoothing(SmootType type);
+    B smoothing(SmootType type);
 
-    GraphAttributes sortv(int sortv);
+    B sortv(int sortv);
 
-    GraphAttributes splines();
+    B splines();
 
-    GraphAttributes splines(SplineType type);
+    B splines(SplineType type);
 
-    GraphAttributes start(StartType type, int seed);
+    B start(StartType type, int seed);
 
-    GraphAttributes start(StartType type);
+    B start(StartType type);
 
-    GraphAttributes style(Style.GraphStyle style);
+    B style(Style.GraphStyle style);
 
-    GraphAttributes stylesheet(String path);
+    B stylesheet(String path);
 
-    GraphAttributes target(String target);
+    B target(String target);
 
-    GraphAttributes trueColor();
+    B trueColor();
 
-    GraphAttributes voroMargin(double size);
+    B voroMargin(double size);
 }

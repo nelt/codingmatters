@@ -11,7 +11,7 @@ import org.junit.Test;
  * Date: 14/08/13
  * Time: 07:24
  */
-public class GraphAttributeFormatterTest {
+public class AttributesFormatterTest {
     private IndentedFormatter formatter;
 
     @Before

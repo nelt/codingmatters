@@ -8,7 +8,7 @@ package org.codingmatters.graph.layout.attributes;
  */
 public class Attributes {
     
-    static public GraphAttributes graph() {
-        return new GraphAttributeFormatter();
+    static public GraphAttributes<GraphAttributes> graph() {
+        return new GenericAttributesFormatter<GraphAttributes>();
     }
 }

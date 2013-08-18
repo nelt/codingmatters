@@ -8,10 +8,10 @@ import org.codingmatters.graph.layout.internal.IndentedFormatter;
  * Date: 11/08/13
  * Time: 07:39
  */
-public class GraphAttributeFormatter implements GraphAttributes {
-    
+public class GenericAttributesFormatter<B extends AttributesFormatter> implements AttributesFormatter, GraphAttributes<B> {
+        
     private final AttributeList attributes = new AttributeList();
-
+    
     @Override
     public void append(IndentedFormatter formatter) {
         this.attributes.format(formatter);
@@ -20,239 +20,239 @@ public class GraphAttributeFormatter implements GraphAttributes {
 
 
     @Override
-    public GraphAttributes damping(double damping) {
+    public B damping(double damping) {
         this.attributes.attribute("Damping", damping);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes k(double damping) {
+    public B k(double damping) {
         this.attributes.attribute("K", damping);
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes url(String url) {
+    public B url(String url) {
         this.attributes.attribute("URL", url);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes aspect(double ratio) {
+    public B aspect(double ratio) {
         this.attributes.attribute("aspect", ratio);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes aspect(double ratio, int passCount) {
+    public B aspect(double ratio, int passCount) {
         this.attributes.attribute("aspect", Double.toString(ratio) + ", " + passCount);
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes boundingBox(long lowerLeftX, long lowerLeftY, long upperRightX, long upperRightY) {
+    public B boundingBox(long lowerLeftX, long lowerLeftY, long upperRightX, long upperRightY) {
         this.attributes.attribute("bb", String.format("%s,%s,%s,%s", lowerLeftX,lowerLeftY, upperRightX, upperRightY));
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes backgroundColor(Color color) {
+    public B backgroundColor(Color color) {
         this.attributes.attribute("bgcolor", color.formatted());
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes backgroundGradient(WeightedColors weightedColors) {
+    public B backgroundGradient(WeightedColors weightedColors) {
         this.attributes.attribute("bgcolor", weightedColors.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes center(boolean center) {
+    public B center(boolean center) {
         this.attributes.attribute("center", center);
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes center() {
+    public B center() {
         return this.center(true);
     }
     
     @Override
-    public GraphAttributes charset(String charset) {
+    public B charset(String charset) {
         this.attributes.attribute("charset", charset);
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes clusterRank(ClusterMode mode) {
+    public B clusterRank(ClusterMode mode) {
         this.attributes.attribute("clusterrank", mode.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes colorScheme(String scheme) {
+    public B colorScheme(String scheme) {
         this.attributes.attribute("colorscheme", scheme);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes comment(String comment) {
+    public B comment(String comment) {
         this.attributes.attribute("comment", comment);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes compound(boolean compound) {
+    public B compound(boolean compound) {
         this.attributes.attribute("compound", compound);
-        return this;
+        return (B)this;
     }
     @Override
-    public GraphAttributes compound() {
+    public B compound() {
         this.attributes.attribute("compound", true);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes concentrate(boolean concentrate) {
+    public B concentrate(boolean concentrate) {
         this.attributes.attribute("concentrate", concentrate);
-        return this;
+        return (B)this;
     }
     @Override
-    public GraphAttributes concentrate() {
+    public B concentrate() {
         this.attributes.attribute("concentrate", true);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes defaultdist(double dist) {
+    public B defaultdist(double dist) {
         this.attributes.attribute("defaultdist", dist);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes dimension(int dim) {
+    public B dimension(int dim) {
         this.attributes.attribute("dim", dim);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes dpi(double dpi) {
+    public B dpi(double dpi) {
         this.attributes.attribute("dpi", dpi);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes epsilon(double epsilon) {
+    public B epsilon(double epsilon) {
         this.attributes.attribute("epsilon", epsilon);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes fontColor(Color color) {
+    public B fontColor(Color color) {
         this.attributes.attribute("fontcolor", color.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes fontName(String font) {
+    public B fontName(String font) {
         this.attributes.attribute("fontname", font);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes fontNames(String fonts) {
+    public B fontNames(String fonts) {
         this.attributes.attribute("fontnames", fonts);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes fontPath(String path) {
+    public B fontPath(String path) {
         this.attributes.attribute("fontpath", path);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes fontSize(double size) {
+    public B fontSize(double size) {
         this.attributes.attribute("fontsize", size);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes forceLabels(boolean force) {
+    public B forceLabels(boolean force) {
         this.attributes.attribute("forcelabels", force);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes forceLabels() {
+    public B forceLabels() {
         return this.forceLabels(true);
     }
     
     @Override
-    public GraphAttributes gradientAngle(int angle) {
+    public B gradientAngle(int angle) {
         this.attributes.attribute("gradientangle", angle);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes href(String href) {
+    public B href(String href) {
         this.attributes.attribute("href", href);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes id(String id) {
+    public B id(String id) {
         this.attributes.attribute("id", id);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes imagePath(String path) {
+    public B imagePath(String path) {
         this.attributes.attribute("imagepath", path);
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes label(String label) {
+    public B label(String label) {
         this.attributes.attribute("label", label);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes labelScheme(String scheme) {
+    public B labelScheme(String scheme) {
         this.attributes.attribute("label_scheme", scheme);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes labelJustification(Justification justification) {
+    public B labelJustification(Justification justification) {
         this.attributes.attribute("labeljust", justification.formatted());
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes labelLocalisation(VerticalLocalisation localisation) {
+    public B labelLocalisation(VerticalLocalisation localisation) {
         this.attributes.attribute("labelloc", localisation.formatted());
-        return this;
+        return (B)this;
     }
 
 
     @Override
-    public GraphAttributes landscape(boolean landscape) {
+    public B landscape(boolean landscape) {
         this.attributes.attribute("landscape", landscape);
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes landscape() {
+    public B landscape() {
         return this.landscape(true);
     }
     
     @Override
-    public GraphAttributes layers(String... layers) {
+    public B layers(String... layers) {
         this.attributes.attribute("layers", join(layers, ":"));
-        return this;
+        return (B)this;
     }
 
     private String join(String[] layers, String separator) {
@@ -271,405 +271,405 @@ public class GraphAttributeFormatter implements GraphAttributes {
     }
 
     @Override
-    public GraphAttributes selectedLayers(String... layers) {
+    public B selectedLayers(String... layers) {
         this.attributes.attribute("layerselect", join(layers, ":"));
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes levels(int levels) {
+    public B levels(int levels) {
         this.attributes.attribute("levels", levels);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes levelsGap(double gap) {
+    public B levelsGap(double gap) {
         this.attributes.attribute("levelsgap", gap);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes logicalHeight(double inches) {
+    public B logicalHeight(double inches) {
         this.attributes.attribute("lheight", inches);
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes logicalWidth(double inches) {
+    public B logicalWidth(double inches) {
         this.attributes.attribute("lwidtth", inches);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes labelPosition(Point p) {
+    public B labelPosition(Point p) {
         this.attributes.attribute("lp", p.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes margin(double margin) {
+    public B margin(double margin) {
         this.attributes.attribute("margin", margin);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes margin(Point margin) {
+    public B margin(Point margin) {
         this.attributes.attribute("margin", margin.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes maximumIteration(int max) {
+    public B maximumIteration(int max) {
         this.attributes.attribute("maxiter", max);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes multiplicativeScale(double factor) {
+    public B multiplicativeScale(double factor) {
         this.attributes.attribute("mclimit", factor);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes minimumSeparation(double distance) {
+    public B minimumSeparation(double distance) {
         this.attributes.attribute("mclimit", distance);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes mode(String mode) {
+    public B mode(String mode) {
         this.attributes.attribute("mode", mode);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes model(String model) {
+    public B model(String model) {
         this.attributes.attribute("model", model);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes adjascentNodeSeparation(double distance) {
+    public B adjascentNodeSeparation(double distance) {
         this.attributes.attribute("nodesep", distance);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes nojustify(boolean no) {
+    public B nojustify(boolean no) {
         this.attributes.attribute("nojustify", no);
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes nojustify() {
+    public B nojustify() {
         return this.nojustify(true);
     }
     
     @Override
-    public GraphAttributes normalize(double angle) {
+    public B normalize(double angle) {
         this.attributes.attribute("normalize", angle);
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes nslimit(double v) {
+    public B nslimit(double v) {
         this.attributes.attribute("nslimit", v);
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes nslimit1(double v) {
+    public B nslimit1(double v) {
         this.attributes.attribute("nslimit1", v);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes ordering(Ordering ordering) {
+    public B ordering(Ordering ordering) {
         this.attributes.attribute("ordering", ordering.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes outputOrder(OutputMode mode) {
+    public B outputOrder(OutputMode mode) {
         this.attributes.attribute("outputorder", mode.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes overlap() {
+    public B overlap() {
         this.attributes.attribute("overlap", true);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes defaultOverlap() {
+    public B defaultOverlap() {
         this.attributes.attribute("overlap", "false");
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes scaleOverlap() {
+    public B scaleOverlap() {
         this.attributes.attribute("overlap", "scale");
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes prismOverlap() {
+    public B prismOverlap() {
         this.attributes.attribute("overlap", "prism");
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes prismOverlap(int attemps) {
+    public B prismOverlap(int attemps) {
         this.attributes.attribute("overlap", "prism" + attemps);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes voronoiOverlap() {
+    public B voronoiOverlap() {
         this.attributes.attribute("overlap", "voronoi");
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes scalexyOverlap() {
+    public B scalexyOverlap() {
         this.attributes.attribute("overlap", "scalexy");
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes compressOverlap() {
+    public B compressOverlap() {
         this.attributes.attribute("overlap", "compress");
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes overlapScaling(double scaling) {
+    public B overlapScaling(double scaling) {
         this.attributes.attribute("overlap_scaling", scaling);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes pack() {
+    public B pack() {
         this.attributes.attribute("pack", true);
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes pack(int margin) {
+    public B pack(int margin) {
         this.attributes.attribute("pack", margin);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes packMode(PackingMode mode) {
+    public B packMode(PackingMode mode) {
         this.attributes.attribute("packmode", mode.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes arrayPackMode(String flags) {
+    public B arrayPackMode(String flags) {
         this.attributes.attribute("packmode", "array_" + flags);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes arrayPackMode(String flags, int columns) {
+    public B arrayPackMode(String flags, int columns) {
         this.attributes.attribute("packmode", "array_" + flags + columns);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes pad(double spec) {
+    public B pad(double spec) {
         this.attributes.attribute("pad", spec);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes pad(Point spec) {
+    public B pad(Point spec) {
         this.attributes.attribute("pad", spec.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes page(double spec) {
+    public B page(double spec) {
         this.attributes.attribute("page", spec);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes page(Point spec) {
+    public B page(Point spec) {
         this.attributes.attribute("page", spec.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes pageDir(Direction dir) {
+    public B pageDir(Direction dir) {
         this.attributes.attribute("pagedir", dir.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes quadTree(QuadType type) {
+    public B quadTree(QuadType type) {
         this.attributes.attribute("quadtree", type.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes quantum(double quantum) {
+    public B quantum(double quantum) {
         this.attributes.attribute("quantum", quantum);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes rank(RankType type, Direction direction) {
+    public B rank(RankType type, Direction direction) {
         this.attributes.attribute("rank", type.formatted());
         this.attributes.attribute("rankdir", direction.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes rankSeparation(String spec) {
+    public B rankSeparation(String spec) {
         this.attributes.attribute("ranksep", spec);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes aspectRatio(double ratio) {
+    public B aspectRatio(double ratio) {
         this.attributes.attribute("ratio", ratio);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes aspectRatio(AspectRatioType type) {
+    public B aspectRatio(AspectRatioType type) {
         this.attributes.attribute("ratio", type.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes runCrossMinimizationTwice() {
+    public B runCrossMinimizationTwice() {
         this.attributes.attribute("remincross", true);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes repulsiveForcePower(double force) {
+    public B repulsiveForcePower(double force) {
         this.attributes.attribute("repulsiveforce", force);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes resolution(double dpi) {
+    public B resolution(double dpi) {
         this.attributes.attribute("resolution", dpi);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes rootNode(String node) {
+    public B rootNode(String node) {
         this.attributes.attribute("root", node);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes rotate(int angle) {
+    public B rotate(int angle) {
         this.attributes.attribute("rotate", angle);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes rotation(double counterClockwise) {
+    public B rotation(double counterClockwise) {
         this.attributes.attribute("rotation", counterClockwise);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes scale(double spec) {
+    public B scale(double spec) {
         this.attributes.attribute("scale", spec);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes scale(Point spec) {
+    public B scale(Point spec) {
         this.attributes.attribute("scale", spec.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes searchsize(int searchsize) {
+    public B searchsize(int searchsize) {
         this.attributes.attribute("searchsize", searchsize);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes size(double size) {
+    public B size(double size) {
         this.attributes.attribute("size", size);
-        return this;
+        return (B)this;
     }
 
     @Override
-    public GraphAttributes smoothing(SmootType type) {
+    public B smoothing(SmootType type) {
         this.attributes.attribute("smoothing", type.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes sortv(int sortv) {
+    public B sortv(int sortv) {
         this.attributes.attribute("sortv", sortv);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes splines() {
+    public B splines() {
         this.attributes.attribute("splines", true);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes splines(SplineType type) {
+    public B splines(SplineType type) {
         this.attributes.attribute("splines", type.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes start(StartType type, int seed) {
+    public B start(StartType type, int seed) {
         this.attributes.attribute("start", type.formatted() + " " + seed);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes start(StartType type) {
+    public B start(StartType type) {
         this.attributes.attribute("start", type.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes style(Style.GraphStyle style) {
+    public B style(Style.GraphStyle style) {
         this.attributes.attribute("style", style.formatted());
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes stylesheet(String path) {
+    public B stylesheet(String path) {
         this.attributes.attribute("stylesheet", path);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes target(String target) {
+    public B target(String target) {
         this.attributes.attribute("target", target);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes trueColor() {
+    public B trueColor() {
         this.attributes.attribute("truecolor", true);
-        return this;
+        return (B)this;
     }
     
     @Override
-    public GraphAttributes voroMargin(double size) {
+    public B voroMargin(double size) {
         this.attributes.attribute("voro_margin", size);
-        return this;
+        return (B)this;
     }
 
 }
