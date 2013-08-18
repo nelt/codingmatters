@@ -1,7 +1,7 @@
 package org.codingmatters.graph.layout;
 
 import org.codingmatters.graph.layout.attributes.NodeAttributes;
-import org.codingmatters.graph.layout.internal.IndentedFormatter;
+import org.codingmatters.graph.layout.formatting.IndentedFormatter;
 
 /**
  * Created with IntelliJ IDEA.

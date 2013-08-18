@@ -1,16 +1,17 @@
-package org.codingmatters.graph.layout.attributes;
+package org.codingmatters.graph.layout.attributes.values;
 
 /**
  * Created with IntelliJ IDEA.
  * User: nelt
  * Date: 14/08/13
- * Time: 15:40
+ * Time: 14:23
  */
-public enum VerticalLocalisation {
-    TOP("t"), BOTTOM("b");
+public enum ClusterMode {
+    LOCAL("local"), GLOBAL("global"), NONE("none");
+    
     private final String formatted;
 
-    private VerticalLocalisation(String formatted) {
+    private ClusterMode(String formatted) {
         this.formatted = formatted;
     }
 

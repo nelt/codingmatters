@@ -1,17 +1,17 @@
-package org.codingmatters.graph.layout.attributes;
+package org.codingmatters.graph.layout.attributes.values;
 
 /**
  * Created with IntelliJ IDEA.
  * User: nelt
- * Date: 15/08/13
- * Time: 07:07
+ * Date: 14/08/13
+ * Time: 15:30
  */
-public enum Ordering {
-    OUT("out"), IN("in");
+public enum Justification {
+    LEFT("l"), CENTER("c"), RIGHT("r");
     
     private final String formatted;
 
-    private Ordering(String formatted) {
+    private Justification(String formatted) {
         this.formatted = formatted;
     }
     

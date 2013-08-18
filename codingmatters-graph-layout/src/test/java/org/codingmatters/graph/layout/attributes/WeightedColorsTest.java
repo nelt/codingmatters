@@ -2,9 +2,9 @@ package org.codingmatters.graph.layout.attributes;
 
 import org.junit.Test;
 
-import static org.codingmatters.graph.layout.attributes.Color.named;
-import static org.codingmatters.graph.layout.attributes.WeightedColors.list;
-import static org.codingmatters.graph.layout.attributes.WeightedColors.weighted;
+import static org.codingmatters.graph.layout.attributes.values.Color.named;
+import static org.codingmatters.graph.layout.attributes.values.WeightedColors.list;
+import static org.codingmatters.graph.layout.attributes.values.WeightedColors.weighted;
 import static org.junit.Assert.assertEquals;
 
 /**

@@ -1,5 +1,6 @@
 package org.codingmatters.graph.layout.attributes;
 
+import org.codingmatters.graph.layout.attributes.values.Direction;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

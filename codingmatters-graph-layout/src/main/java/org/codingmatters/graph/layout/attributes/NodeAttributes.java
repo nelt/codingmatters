@@ -1,5 +1,7 @@
 package org.codingmatters.graph.layout.attributes;
 
+import org.codingmatters.graph.layout.attributes.values.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: nelt

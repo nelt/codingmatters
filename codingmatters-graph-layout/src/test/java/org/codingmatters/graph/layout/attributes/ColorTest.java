@@ -1,5 +1,6 @@
 package org.codingmatters.graph.layout.attributes;
 
+import org.codingmatters.graph.layout.attributes.values.Color;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

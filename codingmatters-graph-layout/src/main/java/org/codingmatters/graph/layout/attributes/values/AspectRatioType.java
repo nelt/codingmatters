@@ -1,17 +1,17 @@
-package org.codingmatters.graph.layout.attributes;
+package org.codingmatters.graph.layout.attributes.values;
 
 /**
  * Created with IntelliJ IDEA.
  * User: nelt
  * Date: 15/08/13
- * Time: 07:53
+ * Time: 07:59
  */
-public enum RankType {
-    SAME("same"), MIN("min"), SOURCE("source"), MAX("max"), SINK("sink");
+public enum AspectRatioType {
+    FILL("fill"), COMPRESS("compress"), EXPAND("expand"), AUTO("auto");
 
     private final String formatted;
 
-    private RankType(String formatted) {
+    private AspectRatioType(String formatted) {
         this.formatted = formatted;
     }
     

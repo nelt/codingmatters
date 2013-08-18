@@ -1,4 +1,4 @@
-package org.codingmatters.graph.layout.attributes;
+package org.codingmatters.graph.layout.attributes.values;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,6 +1,6 @@
 package org.codingmatters.graph.layout.attributes;
 
-import org.codingmatters.graph.layout.internal.IndentedFormatter;
+import org.codingmatters.graph.layout.formatting.IndentedFormatter;
 
 import java.util.HashMap;
 

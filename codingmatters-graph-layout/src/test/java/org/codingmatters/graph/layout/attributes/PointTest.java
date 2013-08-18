@@ -1,5 +1,6 @@
 package org.codingmatters.graph.layout.attributes;
 
+import org.codingmatters.graph.layout.attributes.values.Point;
 import org.junit.Assert;
 import org.junit.Test;
 

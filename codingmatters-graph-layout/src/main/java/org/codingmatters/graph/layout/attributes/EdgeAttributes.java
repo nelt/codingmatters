@@ -1,5 +1,9 @@
 package org.codingmatters.graph.layout.attributes;
 
+import org.codingmatters.graph.layout.attributes.values.Color;
+import org.codingmatters.graph.layout.attributes.values.Point;
+import org.codingmatters.graph.layout.attributes.values.Style;
+
 /**
  * Created with IntelliJ IDEA.
  * User: nelt

@@ -1,17 +1,17 @@
-package org.codingmatters.graph.layout.attributes;
+package org.codingmatters.graph.layout.attributes.values;
 
 /**
  * Created with IntelliJ IDEA.
  * User: nelt
  * Date: 15/08/13
- * Time: 07:48
+ * Time: 07:30
  */
-public enum QuadType {
-    NORMAL("normal"), FAST("fast"), NONE("none");
+public enum PackingMode {
+    NODE("node"), CLUSTER("clust"), GRAPH("graph");
 
     private final String formatted;
 
-    private QuadType(String formatted) {
+    private PackingMode(String formatted) {
         this.formatted = formatted;
     }
     

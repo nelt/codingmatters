@@ -1,4 +1,4 @@
-package org.codingmatters.graph.layout.internal;
+package org.codingmatters.graph.layout.formatting;
 
 /**
  * Created with IntelliJ IDEA.

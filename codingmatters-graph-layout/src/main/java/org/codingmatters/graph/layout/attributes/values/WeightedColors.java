@@ -1,4 +1,4 @@
-package org.codingmatters.graph.layout.attributes;
+package org.codingmatters.graph.layout.attributes.values;
 
 import java.util.Arrays;
 import java.util.List;

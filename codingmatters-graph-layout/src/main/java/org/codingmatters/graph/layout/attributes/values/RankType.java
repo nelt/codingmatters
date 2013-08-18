@@ -1,17 +1,17 @@
-package org.codingmatters.graph.layout.attributes;
+package org.codingmatters.graph.layout.attributes.values;
 
 /**
  * Created with IntelliJ IDEA.
  * User: nelt
  * Date: 15/08/13
- * Time: 07:30
+ * Time: 07:53
  */
-public enum PackingMode {
-    NODE("node"), CLUSTER("clust"), GRAPH("graph");
+public enum RankType {
+    SAME("same"), MIN("min"), SOURCE("source"), MAX("max"), SINK("sink");
 
     private final String formatted;
 
-    private PackingMode(String formatted) {
+    private RankType(String formatted) {
         this.formatted = formatted;
     }
     

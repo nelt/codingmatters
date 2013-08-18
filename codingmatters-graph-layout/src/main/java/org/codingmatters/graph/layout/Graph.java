@@ -4,7 +4,7 @@ import org.codingmatters.graph.layout.attributes.AttributesFormatter;
 import org.codingmatters.graph.layout.attributes.EdgeAttributes;
 import org.codingmatters.graph.layout.attributes.GraphAttributes;
 import org.codingmatters.graph.layout.attributes.NodeAttributes;
-import org.codingmatters.graph.layout.internal.IndentedFormatter;
+import org.codingmatters.graph.layout.formatting.IndentedFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +28,7 @@ public class Graph {
     public Graph(String id) {
         this.id = id;
     }
-
-
-
+    
     public Graph directed() {
         this.type = GraphType.DIGRAPH;
         return this;
