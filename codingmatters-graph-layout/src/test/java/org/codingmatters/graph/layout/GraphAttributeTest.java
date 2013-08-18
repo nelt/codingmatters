@@ -25,4 +25,30 @@ public class GraphAttributeTest {
                 "}", 
                 graph.asDot());
     }
+
+    @Test
+    public void testEdgeAttributes() throws Exception {
+        Graph graph = new Graph("G")
+                .edgeAttributes(Attributes.edge().url("http://www.codingmatters.org"))
+                ;
+
+        assertEquals(
+                "graph G {\n" +
+                        "\tedge [URL = http://www.codingmatters.org];\n" +
+                        "}",
+                graph.asDot());
+    }
+
+    @Test
+    public void testNodeAttributes() throws Exception {
+        Graph graph = new Graph("G")
+                .nodeAttributes(Attributes.node().url("http://www.codingmatters.org"))
+                ;
+
+        assertEquals(
+                "graph G {\n" +
+                        "\tnode [URL = http://www.codingmatters.org];\n" +
+                        "}",
+                graph.asDot());
+    }
 }

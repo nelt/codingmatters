@@ -8,7 +8,10 @@ import org.codingmatters.graph.layout.internal.IndentedFormatter;
  * Date: 11/08/13
  * Time: 07:39
  */
-public class GenericAttributesFormatter<B extends AttributesFormatter> implements AttributesFormatter, GraphAttributes<B> {
+public class GenericAttributesFormatter<F extends AttributesFormatter> implements AttributesFormatter, 
+        GraphAttributes<F>, 
+        EdgeAttributes<F>,
+        NodeAttributes<F> {
         
     private final AttributeList attributes = new AttributeList();
     
@@ -20,239 +23,239 @@ public class GenericAttributesFormatter<B extends AttributesFormatter> implement
 
 
     @Override
-    public B damping(double damping) {
+    public F damping(double damping) {
         this.attributes.attribute("Damping", damping);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B k(double damping) {
+    public F k(double damping) {
         this.attributes.attribute("K", damping);
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B url(String url) {
+    public F url(String url) {
         this.attributes.attribute("URL", url);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B aspect(double ratio) {
+    public F aspect(double ratio) {
         this.attributes.attribute("aspect", ratio);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B aspect(double ratio, int passCount) {
+    public F aspect(double ratio, int passCount) {
         this.attributes.attribute("aspect", Double.toString(ratio) + ", " + passCount);
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B boundingBox(long lowerLeftX, long lowerLeftY, long upperRightX, long upperRightY) {
+    public F boundingBox(long lowerLeftX, long lowerLeftY, long upperRightX, long upperRightY) {
         this.attributes.attribute("bb", String.format("%s,%s,%s,%s", lowerLeftX,lowerLeftY, upperRightX, upperRightY));
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B backgroundColor(Color color) {
+    public F backgroundColor(Color color) {
         this.attributes.attribute("bgcolor", color.formatted());
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B backgroundGradient(WeightedColors weightedColors) {
+    public F backgroundGradient(WeightedColors weightedColors) {
         this.attributes.attribute("bgcolor", weightedColors.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B center(boolean center) {
+    public F center(boolean center) {
         this.attributes.attribute("center", center);
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B center() {
+    public F center() {
         return this.center(true);
     }
     
     @Override
-    public B charset(String charset) {
+    public F charset(String charset) {
         this.attributes.attribute("charset", charset);
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B clusterRank(ClusterMode mode) {
+    public F clusterRank(ClusterMode mode) {
         this.attributes.attribute("clusterrank", mode.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B colorScheme(String scheme) {
+    public F colorScheme(String scheme) {
         this.attributes.attribute("colorscheme", scheme);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B comment(String comment) {
+    public F comment(String comment) {
         this.attributes.attribute("comment", comment);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B compound(boolean compound) {
+    public F compound(boolean compound) {
         this.attributes.attribute("compound", compound);
-        return (B)this;
+        return (F)this;
     }
     @Override
-    public B compound() {
+    public F compound() {
         this.attributes.attribute("compound", true);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B concentrate(boolean concentrate) {
+    public F concentrate(boolean concentrate) {
         this.attributes.attribute("concentrate", concentrate);
-        return (B)this;
+        return (F)this;
     }
     @Override
-    public B concentrate() {
+    public F concentrate() {
         this.attributes.attribute("concentrate", true);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B defaultdist(double dist) {
+    public F defaultdist(double dist) {
         this.attributes.attribute("defaultdist", dist);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B dimension(int dim) {
+    public F dimension(int dim) {
         this.attributes.attribute("dim", dim);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B dpi(double dpi) {
+    public F dpi(double dpi) {
         this.attributes.attribute("dpi", dpi);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B epsilon(double epsilon) {
+    public F epsilon(double epsilon) {
         this.attributes.attribute("epsilon", epsilon);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B fontColor(Color color) {
+    public F fontColor(Color color) {
         this.attributes.attribute("fontcolor", color.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B fontName(String font) {
+    public F fontName(String font) {
         this.attributes.attribute("fontname", font);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B fontNames(String fonts) {
+    public F fontNames(String fonts) {
         this.attributes.attribute("fontnames", fonts);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B fontPath(String path) {
+    public F fontPath(String path) {
         this.attributes.attribute("fontpath", path);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B fontSize(double size) {
+    public F fontSize(double size) {
         this.attributes.attribute("fontsize", size);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B forceLabels(boolean force) {
+    public F forceLabels(boolean force) {
         this.attributes.attribute("forcelabels", force);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B forceLabels() {
+    public F forceLabels() {
         return this.forceLabels(true);
     }
     
     @Override
-    public B gradientAngle(int angle) {
+    public F gradientAngle(int angle) {
         this.attributes.attribute("gradientangle", angle);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B href(String href) {
+    public F href(String href) {
         this.attributes.attribute("href", href);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B id(String id) {
+    public F id(String id) {
         this.attributes.attribute("id", id);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B imagePath(String path) {
+    public F imagePath(String path) {
         this.attributes.attribute("imagepath", path);
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B label(String label) {
+    public F label(String label) {
         this.attributes.attribute("label", label);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B labelScheme(String scheme) {
+    public F labelScheme(String scheme) {
         this.attributes.attribute("label_scheme", scheme);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B labelJustification(Justification justification) {
+    public F labelJustification(Justification justification) {
         this.attributes.attribute("labeljust", justification.formatted());
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B labelLocalisation(VerticalLocalisation localisation) {
+    public F labelLocalisation(VerticalLocalisation localisation) {
         this.attributes.attribute("labelloc", localisation.formatted());
-        return (B)this;
+        return (F)this;
     }
 
 
     @Override
-    public B landscape(boolean landscape) {
+    public F landscape(boolean landscape) {
         this.attributes.attribute("landscape", landscape);
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B landscape() {
+    public F landscape() {
         return this.landscape(true);
     }
     
     @Override
-    public B layers(String... layers) {
+    public F layers(String... layers) {
         this.attributes.attribute("layers", join(layers, ":"));
-        return (B)this;
+        return (F)this;
     }
 
     private String join(String[] layers, String separator) {
@@ -271,405 +274,415 @@ public class GenericAttributesFormatter<B extends AttributesFormatter> implement
     }
 
     @Override
-    public B selectedLayers(String... layers) {
+    public F selectedLayers(String... layers) {
         this.attributes.attribute("layerselect", join(layers, ":"));
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B levels(int levels) {
+    public F levels(int levels) {
         this.attributes.attribute("levels", levels);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B levelsGap(double gap) {
+    public F levelsGap(double gap) {
         this.attributes.attribute("levelsgap", gap);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B logicalHeight(double inches) {
+    public F logicalHeight(double inches) {
         this.attributes.attribute("lheight", inches);
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B logicalWidth(double inches) {
+    public F logicalWidth(double inches) {
         this.attributes.attribute("lwidtth", inches);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B labelPosition(Point p) {
+    public F labelPosition(Point p) {
         this.attributes.attribute("lp", p.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B margin(double margin) {
+    public F margin(double margin) {
         this.attributes.attribute("margin", margin);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B margin(Point margin) {
+    public F margin(Point margin) {
         this.attributes.attribute("margin", margin.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B maximumIteration(int max) {
+    public F maximumIteration(int max) {
         this.attributes.attribute("maxiter", max);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B multiplicativeScale(double factor) {
+    public F multiplicativeScale(double factor) {
         this.attributes.attribute("mclimit", factor);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B minimumSeparation(double distance) {
+    public F minimumSeparation(double distance) {
         this.attributes.attribute("mclimit", distance);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B mode(String mode) {
+    public F mode(String mode) {
         this.attributes.attribute("mode", mode);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B model(String model) {
+    public F model(String model) {
         this.attributes.attribute("model", model);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B adjascentNodeSeparation(double distance) {
+    public F adjascentNodeSeparation(double distance) {
         this.attributes.attribute("nodesep", distance);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B nojustify(boolean no) {
+    public F nojustify(boolean no) {
         this.attributes.attribute("nojustify", no);
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B nojustify() {
+    public F nojustify() {
         return this.nojustify(true);
     }
     
     @Override
-    public B normalize(double angle) {
+    public F normalize(double angle) {
         this.attributes.attribute("normalize", angle);
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B nslimit(double v) {
+    public F nslimit(double v) {
         this.attributes.attribute("nslimit", v);
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B nslimit1(double v) {
+    public F nslimit1(double v) {
         this.attributes.attribute("nslimit1", v);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B ordering(Ordering ordering) {
+    public F ordering(Ordering ordering) {
         this.attributes.attribute("ordering", ordering.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B outputOrder(OutputMode mode) {
+    public F outputOrder(OutputMode mode) {
         this.attributes.attribute("outputorder", mode.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B overlap() {
+    public F overlap() {
         this.attributes.attribute("overlap", true);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B defaultOverlap() {
+    public F defaultOverlap() {
         this.attributes.attribute("overlap", "false");
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B scaleOverlap() {
+    public F scaleOverlap() {
         this.attributes.attribute("overlap", "scale");
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B prismOverlap() {
+    public F prismOverlap() {
         this.attributes.attribute("overlap", "prism");
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B prismOverlap(int attemps) {
+    public F prismOverlap(int attemps) {
         this.attributes.attribute("overlap", "prism" + attemps);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B voronoiOverlap() {
+    public F voronoiOverlap() {
         this.attributes.attribute("overlap", "voronoi");
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B scalexyOverlap() {
+    public F scalexyOverlap() {
         this.attributes.attribute("overlap", "scalexy");
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B compressOverlap() {
+    public F compressOverlap() {
         this.attributes.attribute("overlap", "compress");
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B overlapScaling(double scaling) {
+    public F overlapScaling(double scaling) {
         this.attributes.attribute("overlap_scaling", scaling);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B pack() {
+    public F pack() {
         this.attributes.attribute("pack", true);
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B pack(int margin) {
+    public F pack(int margin) {
         this.attributes.attribute("pack", margin);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B packMode(PackingMode mode) {
+    public F packMode(PackingMode mode) {
         this.attributes.attribute("packmode", mode.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B arrayPackMode(String flags) {
+    public F arrayPackMode(String flags) {
         this.attributes.attribute("packmode", "array_" + flags);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B arrayPackMode(String flags, int columns) {
+    public F arrayPackMode(String flags, int columns) {
         this.attributes.attribute("packmode", "array_" + flags + columns);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B pad(double spec) {
+    public F pad(double spec) {
         this.attributes.attribute("pad", spec);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B pad(Point spec) {
+    public F pad(Point spec) {
         this.attributes.attribute("pad", spec.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B page(double spec) {
+    public F page(double spec) {
         this.attributes.attribute("page", spec);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B page(Point spec) {
+    public F page(Point spec) {
         this.attributes.attribute("page", spec.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B pageDir(Direction dir) {
+    public F pageDir(Direction dir) {
         this.attributes.attribute("pagedir", dir.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B quadTree(QuadType type) {
+    public F quadTree(QuadType type) {
         this.attributes.attribute("quadtree", type.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B quantum(double quantum) {
+    public F quantum(double quantum) {
         this.attributes.attribute("quantum", quantum);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B rank(RankType type, Direction direction) {
+    public F rank(RankType type, Direction direction) {
         this.attributes.attribute("rank", type.formatted());
         this.attributes.attribute("rankdir", direction.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B rankSeparation(String spec) {
+    public F rankSeparation(String spec) {
         this.attributes.attribute("ranksep", spec);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B aspectRatio(double ratio) {
+    public F aspectRatio(double ratio) {
         this.attributes.attribute("ratio", ratio);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B aspectRatio(AspectRatioType type) {
+    public F aspectRatio(AspectRatioType type) {
         this.attributes.attribute("ratio", type.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B runCrossMinimizationTwice() {
+    public F runCrossMinimizationTwice() {
         this.attributes.attribute("remincross", true);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B repulsiveForcePower(double force) {
+    public F repulsiveForcePower(double force) {
         this.attributes.attribute("repulsiveforce", force);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B resolution(double dpi) {
+    public F resolution(double dpi) {
         this.attributes.attribute("resolution", dpi);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B rootNode(String node) {
+    public F rootNode(String node) {
         this.attributes.attribute("root", node);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B rotate(int angle) {
+    public F rotate(int angle) {
         this.attributes.attribute("rotate", angle);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B rotation(double counterClockwise) {
+    public F rotation(double counterClockwise) {
         this.attributes.attribute("rotation", counterClockwise);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B scale(double spec) {
+    public F scale(double spec) {
         this.attributes.attribute("scale", spec);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B scale(Point spec) {
+    public F scale(Point spec) {
         this.attributes.attribute("scale", spec.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B searchsize(int searchsize) {
+    public F searchsize(int searchsize) {
         this.attributes.attribute("searchsize", searchsize);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B size(double size) {
+    public F size(double size) {
         this.attributes.attribute("size", size);
-        return (B)this;
+        return (F)this;
     }
 
     @Override
-    public B smoothing(SmootType type) {
+    public F smoothing(SmootType type) {
         this.attributes.attribute("smoothing", type.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B sortv(int sortv) {
+    public F sortv(int sortv) {
         this.attributes.attribute("sortv", sortv);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B splines() {
+    public F splines() {
         this.attributes.attribute("splines", true);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B splines(SplineType type) {
+    public F splines(SplineType type) {
         this.attributes.attribute("splines", type.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B start(StartType type, int seed) {
+    public F start(StartType type, int seed) {
         this.attributes.attribute("start", type.formatted() + " " + seed);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B start(StartType type) {
+    public F start(StartType type) {
         this.attributes.attribute("start", type.formatted());
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B style(Style.GraphStyle style) {
+    public F style(Style.GraphStyle style) {
         this.attributes.attribute("style", style.formatted());
-        return (B)this;
+        return (F)this;
+    }
+    @Override
+    public F style(Style.EdgeStyle style) {
+        this.attributes.attribute("style", style.formatted());
+        return (F)this;
+    }
+    @Override
+    public F style(Style.NodeStyle style) {
+        this.attributes.attribute("style", style.formatted());
+        return (F)this;
     }
     
     @Override
-    public B stylesheet(String path) {
+    public F stylesheet(String path) {
         this.attributes.attribute("stylesheet", path);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B target(String target) {
+    public F target(String target) {
         this.attributes.attribute("target", target);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B trueColor() {
+    public F trueColor() {
         this.attributes.attribute("truecolor", true);
-        return (B)this;
+        return (F)this;
     }
     
     @Override
-    public B voroMargin(double size) {
+    public F voroMargin(double size) {
         this.attributes.attribute("voro_margin", size);
-        return (B)this;
+        return (F)this;
     }
 
 }

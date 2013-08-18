@@ -11,4 +11,12 @@ public class Attributes {
     static public GraphAttributes<GraphAttributes> graph() {
         return new GenericAttributesFormatter<GraphAttributes>();
     }
+
+    public static EdgeAttributes<EdgeAttributes> edge() {
+        return new GenericAttributesFormatter<EdgeAttributes>();
+    }
+
+    public static NodeAttributes<NodeAttributes> node() {
+        return new GenericAttributesFormatter<NodeAttributes>();
+    }
 }

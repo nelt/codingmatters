@@ -1,31 +1,29 @@
 package org.codingmatters.graph.layout;
 
-import org.codingmatters.graph.layout.attributes.EdgeAttributes;
+import org.codingmatters.graph.layout.attributes.NodeAttributes;
 import org.codingmatters.graph.layout.internal.IndentedFormatter;
 
 /**
  * Created with IntelliJ IDEA.
  * User: nelt
- * Date: 09/08/13
+ * Date: 18/08/13
  * Time: 08:24
  */
-public class Edge {
-    private final String left;
-    private final String right;
-    private final EdgeAttributes attributes;
+public class Node {
+    private final String id;
+    private final NodeAttributes attributes;
 
-    public Edge(String left, String right, EdgeAttributes attributes) {
-        this.left = left;
-        this.right = right;
+    public Node(String id, NodeAttributes attributes) {
         this.attributes = attributes;
+        this.id = id;
     }
 
     public void format(IndentedFormatter formatter) {
-        formatter.append(this.left + "->" + this.right);
+        formatter.append(this.id);
         this.formatAttributes(formatter);
         formatter.append(";").newLine();
     }
-    
+
     private void formatAttributes(IndentedFormatter formatter) {
         if(this.attributes != null) {
             formatter.append(" [");
