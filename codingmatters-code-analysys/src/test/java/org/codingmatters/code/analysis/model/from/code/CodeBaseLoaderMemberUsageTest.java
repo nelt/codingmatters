@@ -18,9 +18,9 @@ import static org.junit.Assert.assertTrue;
  */
 public class CodeBaseLoaderMemberUsageTest extends AbstractTest implements CodeBaseLoaderTestConstants {
 
-    private ClassModel load() throws IOException {
+    protected ClassModel load() throws IOException {
         CodeBaseModel codeBase = new CodeBaseLoader()
-                .addSourcePath(new File(INSPECTED_CODE_ROOT + "memberusage")) 
+                .addSourcePath(new File(INSPECTED_CODE_ROOT + "memberusage"))
                 .load();
         return codeBase.classForName(SimpleMemberUsage.class.getName());
     }

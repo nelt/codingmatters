@@ -68,4 +68,9 @@ public class MethodScanner extends TreeScanner<Void, Void> {
             this.currentSymbolTable = this.currentSymbolTable.parent();
         }
     }
+
+    @Override
+    public Void visitMethodInvocation(MethodInvocationTree methodInvocationTree, Void aVoid) {
+        return super.visitMethodInvocation(methodInvocationTree, aVoid);
+    }
 }
