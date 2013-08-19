@@ -368,7 +368,7 @@ public class GenericAttributesFormatter<F extends AttributesFormatter> implement
     public F nojustify() {
         return this.nojustify(true);
     }
-    
+
     @Override
     public F normalize(double angle) {
         this.attributes.attribute("normalize", angle);
