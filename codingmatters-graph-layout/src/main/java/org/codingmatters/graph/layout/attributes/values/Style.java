@@ -9,7 +9,7 @@ package org.codingmatters.graph.layout.attributes.values;
 public interface Style {
     
     public static enum GraphStyle implements Style {
-        RADIAL("radial")
+        RADIAL("radial"), FILLED("filled")
         ;
         private final String formatted;
 
