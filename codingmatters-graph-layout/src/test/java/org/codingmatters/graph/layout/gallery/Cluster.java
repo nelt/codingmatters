@@ -1,8 +1,6 @@
 package org.codingmatters.graph.layout.gallery;
 
 import org.codingmatters.graph.layout.Graph;
-import org.codingmatters.graph.layout.attributes.Attributes;
-import org.codingmatters.graph.layout.attributes.values.Style;
 import org.codingmatters.graph.layout.processor.GraphProcessing;
 
 import java.io.File;
@@ -17,11 +15,7 @@ import java.io.File;
 public class Cluster extends GallerySample {
     
     public static void main(String[] args) {
-        try {
-            new Cluster(args).generate();
-        } catch (Exception e) {
-            throw new RuntimeException("failed generating cluster example");
-        }
+        generate(new Cluster(args), "cluster");
     }
     
     protected Cluster(String[] args) {
@@ -29,28 +23,33 @@ public class Cluster extends GallerySample {
     }
 
     @Override
-    public void generate() throws Exception {
+    public File generate() throws Exception {
         File output = this.getOutputFile("cluster.png");
         GraphProcessing
                 .dot( new Graph("G")
                             .directed()
                             .subgraph(new Graph("cluster_0")
-                                    .graphAttributes(Attributes.graph()
-                                            .style(Style.GraphStyle.FILLED)
-                                            //missing color
-                                    )
-                                    .nodeAttributes(Attributes.node()
-                                            .style(Style.NodeStyle.FILLED)
-                                            //missing color
-                                    )
                                     .edge("a0", "a1")
                                     .edge("a1", "a2")
                                     .edge("a2", "a3")
-                                    
                             )
+                        .subgraph(new Graph("cluster_1")
+                                .edge("b0", "b1")
+                                .edge("b1", "b2")
+                                .edge("b2", "b3")
+                        )
+                        .edge("start", "a0")
+                        .edge("start", "b0")
+                        
+                        .edge("a1", "b3")
+                        .edge("b2", "a3")
+                        .edge("a3", "a0")
+                        
+                        .edge("a3", "end")
+                        .edge("b3", "end")
                 )
                 .process(output)
         ;
-        System.out.println("generated " + output.getAbsolutePath());
+        return output;
     }
 }

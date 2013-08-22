@@ -13,9 +13,19 @@ import java.nio.file.Files;
  */
 public abstract class GallerySample {
 
+    static public void generate(GallerySample sample, String name) {
+        try {
+            File output = sample.generate();
+            System.out.println("generated " + name + " to " + output.getAbsolutePath());
+        } catch (Exception e) {
+            System.out.println("failed generating " + name);
+            e.printStackTrace();
+        }
+    }
+    
     private final File directory;
 
-    public abstract void generate() throws Exception;
+    public abstract File generate() throws Exception;
 
     protected GallerySample(String[] args) {
         if(args.length > 0) {

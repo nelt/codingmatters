@@ -15,11 +15,7 @@ public class HelloWorld extends GallerySample {
 
 
     public static void main(String[] args) {
-        try {
-            new HelloWorld(args).generate();
-        } catch (Exception e) {
-            throw new RuntimeException("failed generating hello world example");
-        }
+        generate(new HelloWorld(args), "hello world");
     }
 
     protected HelloWorld(String[] args) {
@@ -27,12 +23,12 @@ public class HelloWorld extends GallerySample {
     }
     
     @Override
-    public void generate() throws Exception {
+    public File generate() throws Exception {
         File output = this.getOutputFile("hello-world.png");
         GraphProcessing
                 .dot(new Graph("G").directed().edge("Hello", "World"))
                 .process(output)
                 ;
-        System.out.println("generated " + output.getAbsolutePath());
+        return output;
     }
 }
