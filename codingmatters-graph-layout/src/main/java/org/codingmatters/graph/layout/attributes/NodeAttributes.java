@@ -8,24 +8,24 @@ import org.codingmatters.graph.layout.attributes.values.*;
  * Date: 18/08/13
  * Time: 07:53
  */
-public interface NodeAttributes<F extends AttributesFormatter> extends AttributesFormatter {
-    F url(String url);
-    F colorScheme(String scheme);
-    F comment(String comment);
-    F fontColor(Color color);
-    F fontName(String font);
-    F fontSize(double size);
-    F gradientAngle(int angle);
-    F href(String href);
-    F id(String id);
-    F label(String label);
-    F labelLocalisation(VerticalLocalisation localisation);
-    F margin(double margin);
-    F margin(Point margin);
-    F nojustify(boolean no);
-    F nojustify();
-    F ordering(Ordering ordering);
-    F sortv(int sortv);
-    F style(Style.NodeStyle style);
-    F target(String target);
+public interface NodeAttributes extends AttributesFormatter {
+    NodeAttributes url(String url);
+    NodeAttributes colorScheme(String scheme);
+    NodeAttributes comment(String comment);
+    NodeAttributes fontColor(Color color);
+    NodeAttributes fontName(String font);
+    NodeAttributes fontSize(double size);
+    NodeAttributes gradientAngle(int angle);
+    NodeAttributes href(String href);
+    NodeAttributes id(String id);
+    NodeAttributes label(String label);
+    NodeAttributes labelLocalisation(VerticalLocalisation localisation);
+    NodeAttributes margin(double margin);
+    NodeAttributes margin(Point margin);
+    NodeAttributes nojustify(boolean no);
+    NodeAttributes nojustify();
+    NodeAttributes ordering(Ordering ordering);
+    NodeAttributes sortv(int sortv);
+    NodeAttributes style(Style.NodeStyle style);
+    NodeAttributes target(String target);
 }

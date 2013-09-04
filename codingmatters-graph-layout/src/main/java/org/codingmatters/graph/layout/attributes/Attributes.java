@@ -8,15 +8,15 @@ package org.codingmatters.graph.layout.attributes;
  */
 public class Attributes {
     
-    static public GraphAttributes<GraphAttributes> graph() {
-        return new GenericAttributesFormatter<GraphAttributes>();
+    static public GraphAttributes graph() {
+        return GenericAttributesFormatter.builder();
     }
 
-    public static EdgeAttributes<EdgeAttributes> edge() {
-        return new GenericAttributesFormatter<EdgeAttributes>();
+    public static EdgeAttributes edge() {
+        return GenericAttributesFormatter.builder();
     }
 
-    public static NodeAttributes<NodeAttributes> node() {
-        return new GenericAttributesFormatter<NodeAttributes>();
+    public static NodeAttributes node() {
+        return GenericAttributesFormatter.builder();
     }
 }

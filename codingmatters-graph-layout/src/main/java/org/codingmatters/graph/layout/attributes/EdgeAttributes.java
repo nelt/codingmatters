@@ -10,19 +10,19 @@ import org.codingmatters.graph.layout.attributes.values.Style;
  * Date: 18/08/13
  * Time: 07:45
  */
-public interface EdgeAttributes <F extends AttributesFormatter> extends AttributesFormatter {
-    F url(String url);
-    F colorScheme(String scheme);
-    F comment(String comment);
-    F fontColor(Color color);
-    F fontName(String font);
-    F fontSize(double size);
-    F href(String href);
-    F id(String id);
-    F label(String label);
-    F labelPosition(Point p);
-    F nojustify(boolean no);
-    F nojustify();
-    F style(Style.EdgeStyle style);
-    F target(String target);
+public interface EdgeAttributes extends AttributesFormatter {
+    EdgeAttributes url(String url);
+    EdgeAttributes colorScheme(String scheme);
+    EdgeAttributes comment(String comment);
+    EdgeAttributes fontColor(Color color);
+    EdgeAttributes fontName(String font);
+    EdgeAttributes fontSize(double size);
+    EdgeAttributes href(String href);
+    EdgeAttributes id(String id);
+    EdgeAttributes label(String label);
+    EdgeAttributes labelPosition(Point p);
+    EdgeAttributes nojustify(boolean no);
+    EdgeAttributes nojustify();
+    EdgeAttributes style(Style.EdgeStyle style);
+    EdgeAttributes target(String target);
 }
