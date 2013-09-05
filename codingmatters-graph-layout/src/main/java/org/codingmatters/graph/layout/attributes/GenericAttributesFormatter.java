@@ -73,10 +73,20 @@ public abstract class GenericAttributesFormatter<B extends GenericAttributesForm
         this.attributes.attribute("bgcolor", color.formatted());
         return this.self();
     }
+    
+    public B color(Color color) {
+        this.attributes.attribute("color", color.formatted());
+        return this.self();
+    }
 
     
     public B backgroundGradient(WeightedColors weightedColors) {
         this.attributes.attribute("bgcolor", weightedColors.formatted());
+        return this.self();
+    }
+    
+    public B shape(Shape shape) {
+        this.attributes.attribute("shape", shape.formatted());
         return this.self();
     }
     

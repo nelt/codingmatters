@@ -12,6 +12,7 @@ public interface NodeAttributes extends AttributesFormatter {
     NodeAttributes url(String url);
     NodeAttributes colorScheme(String scheme);
     NodeAttributes comment(String comment);
+    NodeAttributes color(Color color);
     NodeAttributes fontColor(Color color);
     NodeAttributes fontName(String font);
     NodeAttributes fontSize(double size);
@@ -28,4 +29,5 @@ public interface NodeAttributes extends AttributesFormatter {
     NodeAttributes sortv(int sortv);
     NodeAttributes style(Style.NodeStyle style);
     NodeAttributes target(String target);
+    NodeAttributes shape(Shape shape);
 }

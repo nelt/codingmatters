@@ -15,6 +15,7 @@ public interface GraphAttributes extends AttributesFormatter {
     GraphAttributes aspect(double ratio);
     GraphAttributes aspect(double ratio, int passCount);
     GraphAttributes boundingBox(long lowerLeftX, long lowerLeftY, long upperRightX, long upperRightY);
+    GraphAttributes color(Color color);
     GraphAttributes backgroundColor(Color color);
     GraphAttributes backgroundGradient(WeightedColors weightedColors);
     GraphAttributes center(boolean center);

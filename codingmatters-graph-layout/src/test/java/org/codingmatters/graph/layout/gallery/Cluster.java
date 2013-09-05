@@ -1,6 +1,10 @@
 package org.codingmatters.graph.layout.gallery;
 
 import org.codingmatters.graph.layout.Graph;
+import org.codingmatters.graph.layout.attributes.Attributes;
+import org.codingmatters.graph.layout.attributes.values.Color;
+import org.codingmatters.graph.layout.attributes.values.Shape;
+import org.codingmatters.graph.layout.attributes.values.Style;
 import org.codingmatters.graph.layout.processor.GraphProcessing;
 
 import java.io.File;
@@ -29,11 +33,27 @@ public class Cluster extends GallerySample {
                 .dot( new Graph("G")
                             .directed()
                             .subgraph(new Graph("cluster_0")
+                                    .graphAttributes(Attributes.graph()
+                                            .label("\"process #1\"")
+                                            .style(Style.GraphStyle.FILLED)
+                                            .color(Color.named("lightgrey"))
+                                    )
+                                    .nodeAttributes(Attributes.node()
+                                            .style(Style.NodeStyle.FILLED)
+                                            .color(Color.named("white"))
+                                    )
                                     .edge("a0", "a1")
                                     .edge("a1", "a2")
                                     .edge("a2", "a3")
                             )
                         .subgraph(new Graph("cluster_1")
+                                .graphAttributes(Attributes.graph()
+                                        .label("\"process #2\"")
+                                        .color(Color.named("blue"))
+                                )
+                                .nodeAttributes(Attributes.node()
+                                        .style(Style.NodeStyle.FILLED)
+                                )
                                 .edge("b0", "b1")
                                 .edge("b1", "b2")
                                 .edge("b2", "b3")
@@ -47,6 +67,9 @@ public class Cluster extends GallerySample {
                         
                         .edge("a3", "end")
                         .edge("b3", "end")
+                        
+                        .node("start", Attributes.node().shape(Shape.MDIAMOND))
+                        .node("end", Attributes.node().shape(Shape.MSQUARE))
                 )
                 .process(output)
         ;
