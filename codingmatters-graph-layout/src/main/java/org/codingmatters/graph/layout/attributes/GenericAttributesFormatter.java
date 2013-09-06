@@ -547,6 +547,10 @@ public abstract class GenericAttributesFormatter<B extends GenericAttributesForm
     
     public B rank(RankType type, Direction direction) {
         this.attributes.attribute("rank", type.formatted());
+        return this.rankdir(direction);
+    }
+
+    public B rankdir(Direction direction) {
         this.attributes.attribute("rankdir", direction.formatted());
         return this.self();
     }

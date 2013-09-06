@@ -4,6 +4,8 @@ import org.codingmatters.graph.layout.Graph;
 import org.codingmatters.graph.layout.processor.GraphProcessing;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,12 +23,18 @@ public class HelloWorld extends GallerySample {
     protected HelloWorld(String[] args) {
         super(args);
     }
+
+    @Override
+    public Graph graph() {
+        return new Graph("G").directed().edge("Hello", "World");
+    }
+    
     
     @Override
     public File generate() throws Exception {
         File output = this.getOutputFile("hello-world.png");
         GraphProcessing
-                .dot(new Graph("G").directed().edge("Hello", "World"))
+                .dot(this.graph())
                 .process(output)
                 ;
         return output;

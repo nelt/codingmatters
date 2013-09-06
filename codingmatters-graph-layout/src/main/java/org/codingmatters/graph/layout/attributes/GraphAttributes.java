@@ -93,6 +93,7 @@ public interface GraphAttributes extends AttributesFormatter {
     GraphAttributes quadTree(QuadType type);
     GraphAttributes quantum(double quantum);
     GraphAttributes rank(RankType type, Direction direction);
+    GraphAttributes rankdir(Direction direction);
     GraphAttributes rankSeparation(String spec);
     GraphAttributes aspectRatio(double ratio);
     GraphAttributes aspectRatio(AspectRatioType type);
