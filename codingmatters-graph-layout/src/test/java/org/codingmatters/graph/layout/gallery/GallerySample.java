@@ -16,6 +16,13 @@ import java.nio.file.Files;
  */
 public abstract class GallerySample {
 
+    public static void main(String[] args) {
+        HelloWorld.main(args);
+        Cluster.main(args);
+        DataStructures.main(args);
+        FiniteAutomaton.main(args);
+    }
+    
     static public void generate(GallerySample sample, String name) {
         try {
             File output = sample.generate();

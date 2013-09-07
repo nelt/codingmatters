@@ -8,7 +8,7 @@ package org.codingmatters.graph.layout.attributes.values;
  * To change this template use File | Settings | File Templates.
  */
 public enum Shape {
-    BOX("box"), DIAMOND("diamond"), MDIAMOND("Mdiamond") , SQUARE("square"), MSQUARE("Msquare"), ELLIPSE("ellipse"), RECORD("record");
+    BOX("box"), DIAMOND("diamond"), MDIAMOND("Mdiamond") , SQUARE("square"), MSQUARE("Msquare"), ELLIPSE("ellipse"), RECORD("record"), DOUBLECIRCLE("doublecircle"), CIRCLE("circle");
     private final String formatted;
 
     private Shape(String formatted) {

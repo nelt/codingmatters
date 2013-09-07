@@ -15,9 +15,10 @@ public class TestDotFiles {
     public static void main(String[] args) throws IOException {
         File testGallery = new File("./src/test/resources/gallery");
         
-        new HelloWorld(args).generateDotFile(new File(testGallery, "hello-world.dot"));
-        new Cluster(args).generateDotFile(new File(testGallery, "cluster.dot"));
-        new DataStructures(args).generateDotFile(new File(testGallery, "data-structures.dot"));
+//        new HelloWorld(args).generateDotFile(new File(testGallery, "hello-world.dot"));
+//        new Cluster(args).generateDotFile(new File(testGallery, "cluster.dot"));
+//        new DataStructures(args).generateDotFile(new File(testGallery, "data-structures.dot"));
+        new FiniteAutomaton(args).generateDotFile(new File(testGallery, "finite-automaton.dot"));
     }
     
 }
