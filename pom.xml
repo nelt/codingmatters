@@ -16,7 +16,6 @@
         <module>codingmatters-injector</module>
         <module>codingmatters-code-analysys</module>
         <module>codingmatters-java-fx</module>
-        <module>codingmatters-graphviz</module>
     </modules>
     
 </project>
