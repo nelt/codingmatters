@@ -31,6 +31,13 @@ public class GalleryUsageTest {
                 new Cluster(new String[0]).graph().asDot());
     }
 
+    @Test
+    public void testDataStructures() throws Exception {
+        assertEquals(
+                this.read("data-structures.dot"), 
+                new DataStructures(new String[0]).graph().asDot());
+    }
+
     private String read(String dot) throws IOException {
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream("gallery/" + dot)))) {
             StringBuffer result = new StringBuffer();
