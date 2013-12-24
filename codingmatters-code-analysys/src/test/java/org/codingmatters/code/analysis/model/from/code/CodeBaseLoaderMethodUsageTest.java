@@ -1,7 +1,7 @@
 package org.codingmatters.code.analysis.model.from.code;
 
 import org.codingmatters.code.analysis.model.*;
-import org.codingmatters.code.analysis.model.from.code.inspected.memberusage.SimpleMemberUsage;
+import org.codingmatters.code.analysis.model.from.code.inspected.methodusage.MethodAndMemberWithSameNameMethodUsage;
 import org.codingmatters.code.analysis.model.from.code.inspected.methodusage.SimpleMethodUsage;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -21,10 +21,14 @@ import static org.junit.Assert.assertTrue;
 public class CodeBaseLoaderMethodUsageTest extends AbstractTest implements CodeBaseLoaderTestConstants {
 
     protected ClassModel load() throws IOException {
-        CodeBaseModel codeBase = new CodeBaseLoader()
+        return this.load(SimpleMethodUsage.class);
+    }
+    
+    protected ClassModel load(Class clazz) throws IOException {
+        CodeBaseModel codeBase = CodeBaseLoaders.loader()
                 .addSourcePath(new File(INSPECTED_CODE_ROOT + "methodusage"))
                 .load();
-        return codeBase.classForName(SimpleMethodUsage.class.getName());
+        return codeBase.classForName(clazz.getName());
     }
     
     
@@ -40,18 +44,16 @@ public class CodeBaseLoaderMethodUsageTest extends AbstractTest implements CodeB
     }
 
 
-    @Ignore
     @Test
     public void testQualifiedUsage() throws Exception {
         ClassModel classModel = this.load();
-
+        
         MethodModel actual = classModel.getMethod("qualifiedUsage");
         MethodModel used = classModel.getMethod("used");
 
         assertTrue(actual.uses(used));
     }
     
-    @Ignore
     @Test
     public void testUnqualifiedUsage() throws Exception {
         ClassModel classModel = this.load();
@@ -61,7 +63,19 @@ public class CodeBaseLoaderMethodUsageTest extends AbstractTest implements CodeB
 
         assertTrue(actual.uses(used));
     }
-    
-    
-    
+
+
+    @Ignore
+    @Test
+    public void testQualifiedUsage_WhenMemberAndMethodWithSameName() throws Exception {
+        ClassModel classModel = this.load(MethodAndMemberWithSameNameMethodUsage.class);
+
+        assertTrue(
+                classModel.getMethod("memberQualifiedUsage")
+                        .uses(classModel.getMember("used")));
+        
+        assertTrue(
+                classModel.getMethod("methodQualifiedUsage")
+                        .uses(classModel.getMethod("used")));
+    }
 }

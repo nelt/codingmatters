@@ -1,6 +1,7 @@
 package org.codingmatters.code.analysis.model.from.code;
 
 import org.codingmatters.code.analysis.model.*;
+import org.codingmatters.code.analysis.model.from.code.inspected.memberusage.MemberDeclaredAfterMemberUsage;
 import org.codingmatters.code.analysis.model.from.code.inspected.memberusage.SimpleMemberUsage;
 import org.junit.Test;
 
@@ -18,11 +19,14 @@ import static org.junit.Assert.assertTrue;
  */
 public class CodeBaseLoaderMemberUsageTest extends AbstractTest implements CodeBaseLoaderTestConstants {
 
-    protected ClassModel load() throws IOException {
-        CodeBaseModel codeBase = new CodeBaseLoader()
+    protected ClassModel load(Class clazz) throws IOException {
+        CodeBaseModel codeBase = CodeBaseLoaders.loader()
                 .addSourcePath(new File(INSPECTED_CODE_ROOT + "memberusage"))
                 .load();
-        return codeBase.classForName(SimpleMemberUsage.class.getName());
+        return codeBase.classForName(clazz.getName());
+    }
+    protected ClassModel load() throws IOException {
+        return this.load(SimpleMemberUsage.class);
     }
     
     @Test
@@ -106,8 +110,26 @@ public class CodeBaseLoaderMemberUsageTest extends AbstractTest implements CodeB
         
         assertTrue(actual.uses(member));
     }
-
     
+    @Test
+    public void testAssignement_WhenMemberDeclaredAfterMethod() throws Exception {
+        ClassModel classModel = this.load(MemberDeclaredAfterMemberUsage.class);
 
+        MethodModel actual = classModel.getMethod("memberAssignement");
+        MemberModel member = classModel.getMember("member");
+
+        assertTrue(actual.uses(member));
+    }
+
+
+    @Test
+    public void testAssignementToThis_WhenMemberDeclaredAfterMethod() throws Exception {
+        ClassModel classModel = this.load(MemberDeclaredAfterMemberUsage.class);
+
+        MethodModel actual = classModel.getMethod("thisMemberAssignement");
+        MemberModel member = classModel.getMember("member");
+
+        assertTrue(actual.uses(member));
+    }
 
 }

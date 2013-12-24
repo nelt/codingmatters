@@ -19,7 +19,7 @@ public class CodeBaseLoaderTest extends AbstractTest implements CodeBaseLoaderTe
 
     @Test
     public void testDefaultConstructor() throws Exception {
-        CodeBaseLoader loader = new CodeBaseLoader();
+        CodeBaseLoader loader = CodeBaseLoaders.loader();
         loader.addSourcePath(new File(INSPECTED_CODE_ROOT + "method")) ;
         CodeBaseModel codeBase = loader.load();
         
@@ -31,7 +31,7 @@ public class CodeBaseLoaderTest extends AbstractTest implements CodeBaseLoaderTe
     
     @Test
     public void testMethod() throws Exception {
-        CodeBaseLoader loader = new CodeBaseLoader();
+        CodeBaseLoader loader = CodeBaseLoaders.loader();
         loader.addSourcePath(new File(INSPECTED_CODE_ROOT + "method")) ;
         CodeBaseModel codeBase = loader.load();
         
@@ -43,7 +43,7 @@ public class CodeBaseLoaderTest extends AbstractTest implements CodeBaseLoaderTe
     
     @Test
     public void testMember() throws Exception {
-        CodeBaseLoader loader = new CodeBaseLoader();
+        CodeBaseLoader loader = CodeBaseLoaders.loader();
         loader.addSourcePath(new File(INSPECTED_CODE_ROOT + "member")) ;
         CodeBaseModel codeBase = loader.load();
         

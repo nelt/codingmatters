@@ -19,7 +19,7 @@ public class CodeBaseLoaderSourcePathsTest extends AbstractTest implements CodeB
 
     @Test
     public void testEmptySource() throws Exception {
-        CodeBaseLoader loader = new CodeBaseLoader();
+        CodeBaseLoader loader = CodeBaseLoaders.loader();
         loader.addSourcePath(new File(INSPECTED_CODE_ROOT + "empty")) ;
         CodeBaseModel codeBase = loader.load();
 
@@ -28,7 +28,7 @@ public class CodeBaseLoaderSourcePathsTest extends AbstractTest implements CodeB
 
     @Test
     public void testBrokenSource() throws Exception {
-        CodeBaseLoader loader = new CodeBaseLoader();
+        CodeBaseLoader loader = CodeBaseLoaders.loader();
         loader.addSourcePath(new File(INSPECTED_CODE_ROOT + "broken")) ;
         CodeBaseModel codeBase = loader.load();
 
@@ -38,7 +38,7 @@ public class CodeBaseLoaderSourcePathsTest extends AbstractTest implements CodeB
     
     @Test
     public void testOneSourcePath() throws Exception {
-        CodeBaseLoader loader = new CodeBaseLoader();
+        CodeBaseLoader loader = CodeBaseLoaders.loader();
         loader.addSourcePath(new File(INSPECTED_CODE_ROOT + "oneclass")) ;
         CodeBaseModel codeBase = loader.load();
 
@@ -49,7 +49,7 @@ public class CodeBaseLoaderSourcePathsTest extends AbstractTest implements CodeB
     
     @Test
     public void testTwoSourcePath() throws Exception {
-        CodeBaseLoader loader = new CodeBaseLoader();
+        CodeBaseLoader loader = CodeBaseLoaders.loader();
         loader.addSourcePath(new File("./src/test/java/org/codingmatters/code/analysis/model/from/code/inspected/oneclass")) ;
         loader.addSourcePath(new File("./src/test/java/org/codingmatters/code/analysis/model/from/code/inspected/anotherclass")) ;
         CodeBaseModel codeBase = loader.load();

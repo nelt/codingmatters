@@ -26,6 +26,12 @@
 
 
         <dependency>
+            <groupId>net.sourceforge.pmd</groupId>
+            <artifactId>pmd</artifactId>
+            <version>5.0.5</version>
+        </dependency>
+
+        <dependency>
             <groupId>nl.jqno.equalsverifier</groupId>
             <artifactId>equalsverifier</artifactId>
         </dependency>
