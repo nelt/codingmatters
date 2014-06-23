@@ -14,7 +14,7 @@
         <module>codingmatters-parent</module>
         <module>codingmatters-random-values</module>
         <module>codingmatters-injector</module>
-        <module>codingmatters-code-analysys</module>
+        <!--<module>codingmatters-code-analysys</module>-->
         <module>codingmatters-java-fx</module>
         <module>codingmatters-code-graph</module>
     </modules>
